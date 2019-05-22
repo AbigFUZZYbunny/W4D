@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/utils/responsive.dart';
 import 'package:whats4dinner/utils/double_convert.dart';
+import 'package:whats4dinner/models/recipe_item.dart';
 
 class SettingsButton extends StatelessWidget {
   final IconData icon;
@@ -107,6 +108,37 @@ class SettingsFilter extends StatelessWidget {
             max: 100,
             divisions: 20,
             value: Converter.dynamicToDouble(this.val),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RecipeListItem extends StatelessWidget {
+  final Recipe recipe;
+  final Function onPressed;
+
+  RecipeListItem(this.recipe, this.onPressed,);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
+      onPressed: this.onPressed,
+      child: Row(
+        children: <Widget>[
+          Image.network(
+            this.recipe.image,
+            height: Responsiveness.setHeight(context, 55.0),
+            fit: BoxFit.cover,
+          ),
+          SizedBox(width: Responsiveness.setWidth(context, 20.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(this.recipe.title, style: Theme.of(context).textTheme.title),
+            ],
           ),
         ],
       ),
