@@ -54,7 +54,7 @@ class HomeScreenState extends State<HomeScreen> {
   // signalize the parent widget HomeScreen to refresh the list view:
   void _favoritesChanged() {
     setState(() {
-      FavoritesFunctions.addRemoveFavorite(nextMeal.id);
+      FavoritesFunctions.addRemoveFavorite(nextMeal, context);
     });
   }
 

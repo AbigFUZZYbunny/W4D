@@ -147,9 +147,9 @@ class RecipeListItem extends StatelessWidget {
                   Positioned(
                     child: RawMaterialButton(
                       constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
-                      onPressed: () => FavoritesFunctions.addRemoveFavorite(recipe.id),
+                      onPressed: () => FavoritesFunctions.addRemoveFavorite(recipe, context),
                       child: Icon(
-                        FavoritesFunctions.inFavorites(recipe.id) == true ? Icons.favorite : Icons.favorite_border,
+                        FavoritesFunctions.inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
                       ),
                       elevation: 2.0,
                       fillColor: Colors.white,
