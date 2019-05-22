@@ -9,7 +9,7 @@ class Whats4DinnerApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "What's 4 Dinner",
-      theme: buildTheme(context),
+      theme: buildTheme(),
       initialRoute: '/login',
       routes: {
         // If you're using navigation routes, Flutter needs a base route.

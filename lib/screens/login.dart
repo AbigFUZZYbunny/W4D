@@ -18,19 +18,19 @@ class LoginScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline,
               ),
               // Space between "Recipes" and the button:
-              SizedBox(height: Responsiveness.setHeight(context, 50.0)),
+              SizedBox(height: Responsiveness.setHeight(context, 100.0)),
               GoogleSignInButton(
                 onPressed: () => print("Google Sign In pressed."),
               ),
-              SizedBox(height: Responsiveness.setHeight(context, 20.0)),
+              SizedBox(height: Responsiveness.setHeight(context, 5.0)),
               FacebookSignInButton(
                 onPressed: () => print("Facebook Sign In pressed."),
               ),
-              SizedBox(height: Responsiveness.setHeight(context, 50.0)),
+              SizedBox(height: Responsiveness.setHeight(context, 100.0)),
               Text(
                 "\u00a9 2019 - Curtis Conaway Technologies",
                 style: TextStyle(
-                  fontSize: Responsiveness.setHeight(context, 10.0),
+                  fontSize: Responsiveness.setHeight(context, 14.0),
                   color: Colors.black,
                   fontFamily: "Rubik",
                 ),

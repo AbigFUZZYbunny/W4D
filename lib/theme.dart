@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/utils/responsive.dart';
 
-ThemeData buildTheme(context) {
+ThemeData buildTheme() {
   // We're going to define all of our font styles
   // in this method:
   TextTheme _buildTextTheme(TextTheme base) {
@@ -9,7 +9,7 @@ ThemeData buildTheme(context) {
       headline: base.headline.copyWith(
         fontFamily: 'Rubik',
         fontWeight: FontWeight.w500,
-        fontSize: Responsiveness.setHeight(context, 40.0),
+        fontSize: 40.0,
         color: const Color(0xFF807a6b),
       ),
     );

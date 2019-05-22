@@ -9,7 +9,7 @@ class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: Responsiveness.setWidth(context, 360.0),
+      minWidth: Responsiveness.setWidth(context, 300.0),
       height: Responsiveness.setHeight(context, 40.0),
       onPressed: this.onPressed,
       color: Colors.white,
@@ -18,8 +18,8 @@ class GoogleSignInButton extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             "res/img/branding/google_icon.png",
-            height: Responsiveness.setHeight(context, 18.0),
-            width: Responsiveness.setWidth(context, 18.0),
+            height: Responsiveness.setHeight(context, 24.0),
+            width: Responsiveness.setWidth(context, 24.0),
           ),
           SizedBox(width: Responsiveness.setWidth(context, 24.0)),
           Opacity(
@@ -29,6 +29,7 @@ class GoogleSignInButton extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Roboto',
                 color: Colors.black,
+                fontSize: Responsiveness.setHeight(context, 18.0),
               ),
             ),
           ),
@@ -46,7 +47,7 @@ class FacebookSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: Responsiveness.setWidth(context, 360.0),
+      minWidth: Responsiveness.setWidth(context, 300.0),
       height: Responsiveness.setHeight(context, 40.0),
       onPressed: this.onPressed,
       color: new Color.fromARGB(255, 60, 90, 153),
@@ -55,8 +56,8 @@ class FacebookSignInButton extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             "res/img/branding/facebook_icon.png",
-            height: Responsiveness.setHeight(context, 18.0),
-            width: Responsiveness.setWidth(context, 18.0),
+            height: Responsiveness.setHeight(context, 24.0),
+            width: Responsiveness.setWidth(context, 24.0),
           ),
           SizedBox(width: Responsiveness.setWidth(context, 24.0)),
           Text(
@@ -64,6 +65,7 @@ class FacebookSignInButton extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Roboto',
               color: Colors.white,
+              fontSize: Responsiveness.setHeight(context, 18.0),
             ),
           ),
         ],
