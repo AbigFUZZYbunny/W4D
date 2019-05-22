@@ -30,7 +30,8 @@ class LoginScreen extends StatelessWidget {
               Text(
                 "\u00a9 2019 - Curtis Conaway Technologies",
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: Responsiveness.setHeight(context, 10.0),
+                  color: Colors.black,
                   fontFamily: "Rubik",
                 ),
               ),
