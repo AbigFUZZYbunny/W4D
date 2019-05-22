@@ -1,0 +1,1198 @@
+{
+	"users": {
+		"x2x97zdyyRQlCEpopn3Pt7TCqlm2": {
+			"preferences": {
+				"notifications": {
+					"mealStart": true,
+					"dinnerBell": true,
+					"dinnerBellSMS": [
+						"+19098387738"
+					],
+					"dinnerBellTxt": "Time for dinner!",
+					"newRecommendations": true,
+					"ingredientExp": true
+				},
+				"schedule": {
+					"sideDishes": true,
+					"sideDishDifficulty": 0,
+					"dessert": true,
+					"dessertDifficulty": 0,
+					"servings": 2,
+					"populateCalendar": true,
+					"mealTime": "19:00:00.0000",
+					"daysOut": 0
+				},
+				"favorites": {
+					"scheduleWeight": 10,
+					"quickWeight": 25
+				},
+				"cuisines": {
+					"cuisineWeight": 50,
+					"cuisineTypes": [
+						"American",
+						"Mexican"
+					]
+				},
+				"allergies": {
+					"dairy": false,
+					"egg": false,
+					"gluten": false,
+					"grain": false,
+					"peanut": false,
+					"seafood": true,
+					"sesame": false,
+					"shellfish": true,
+					"soy": false,
+					"sulfite": false,
+					"treeNut": false,
+					"wheat": false
+				},
+				"diets": {
+					"filterLevel": 0,
+					"diets": {
+						"glutenFree": false,
+						"keto": false,
+						"paleo": false,
+						"pescatarian": false,
+						"primal": false,
+						"vegan": false,
+						"vegetarian": false,
+						"whole30": false
+					}
+				},
+				"nutrition": {
+					"preset": "RDA",
+					"filterLevel": 0,
+					"nutrients": [{
+							"title": "Calories",
+							"min": 0,
+							"max": 0,
+							"unit": "cal"
+						}, {
+							"title": "Fat",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Protein",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Carbs",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Alcohol",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Caffeine",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Copper",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Calcium",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Choline",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Cholesterol",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Fluoride",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Saturated Fat",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Vitamin A",
+							"min": 0,
+							"max": 0,
+							"unit": "IU"
+						}, {
+							"title": "Vitamin C",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin D",
+							"min": 0,
+							"max": 0,
+							"unit": "µg"
+						}, {
+							"title": "Vitamin E",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin K",
+							"min": 0,
+							"max": 0,
+							"unit": "µg"
+						}, {
+							"title": "Vitamin B1",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin B2",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin B3",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin B5",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin B6",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Vitamin B12",
+							"min": 0,
+							"max": 0,
+							"unit": "µg"
+						}, {
+							"title": "Fiber",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Folate",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Folic Acid",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Iodine",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Iron",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Magnesium",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Manganese",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Phosphorus",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Potassium",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Selenium",
+							"min": 0,
+							"max": 0,
+							"unit": "g"
+						}, {
+							"title": "Sodium",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Sugar",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}, {
+							"title": "Zinc",
+							"min": 0,
+							"max": 0,
+							"unit": "mg"
+						}
+					]
+				},
+				"ingredients": {
+					"favoritesFilterLevel": 0,
+					"favorites": [],
+					"ignored": []
+				}
+			},
+			"groceries": {
+				"required": [{
+						"name": "chocolate protein powder",
+						"amount": 2,
+						"unit": "tablespoons"
+					}, {
+						"name": "cocoa powder",
+						"amount": 0.5,
+						"unit": "tablespoon"
+					}, {
+						"name": "egg whites",
+						"amount": 2,
+						"unit": ""
+					}, {
+						"name": "whole grain bread",
+						"amount": 3,
+						"unit": "slices"
+					}, {
+						"name": "ground flaxseed",
+						"amount": 1,
+						"unit": "tablespoon"
+					}, {
+						"name": "jam",
+						"amount": 1,
+						"unit": "tablespoon"
+					}, {
+						"name": "peanut butter",
+						"amount": 1,
+						"unit": "tablespoon"
+					}, {
+						"name": "water",
+						"amount": 1,
+						"unit": "tablespoon"
+					}
+				],
+				"stock": [{
+						"id": 16098,
+						"aisle": "Nut butters, Jams, and Honey",
+						"image": "peanut-butter.png",
+						"name": "peanut butter",
+						"originalName": "natural peanut butter (or almond/cashew/hazelnut/sunflower butter)",
+						"amount": 10,
+						"unit": "tablespoon",
+						"measures": {
+							"us": {
+								"amount": 1,
+								"unitShort": "Tbsp",
+								"unitLong": "Tbsp"
+							},
+							"metric": {
+								"amount": 1,
+								"unitShort": "Tbsp",
+								"unitLong": "Tbsp"
+							}
+						},
+						"grocery_items": [{
+								"barcode_number": "051500255162",
+								"product_name": "Jif Creamy Peanut Butter - 16oz",
+								"category": "Food, Beverages & Tobacco > Food Items > Dips & Spreads > Nut Butters",
+								"brand": "Jif",
+								"package_quantity": "",
+								"size": "16 oz",
+								"description": "Keep your kitchen pantry well-stocked with Creamy Peanut Butter from Jif to help you create your favorite meals throughout the day. With 7 grams of protein per serving, you'll feel great about indulging in this classic peanut spread. Whether you spread it onto toast, dip apples into it or create a delicious Thai peanut sauce, you'll get the nutty flavor you've always loved.",
+								"images": [
+									"https://images.barcodelookup.com/2278/22786045-1.jpg"
+								],
+								"stores": [{
+										"store_name": "Pharmapacks",
+										"store_price": "2.92",
+										"product_url": "https://www.pharmapacks.com/products.php?product=Jif-Creamy-Peanut-Butter-16-oz",
+										"currency_code": "USD",
+										"currency_symbol": "$"
+									}, {
+										"store_name": "Walgreens",
+										"store_price": "3.29",
+										"product_url": "http://www.walgreens.com/store/c/jif-peanut-butter-creamy/ID=prod6204011-product",
+										"currency_code": "USD",
+										"currency_symbol": "$"
+									}, {
+										"store_name": "Wal-Mart.com USA, LLC",
+										"store_price": "3.30",
+										"product_url": "http://www.walmart.com/ip/Jif-Creamy-Peanut-Butter-0-0-OZ/25847548",
+										"currency_code": "USD",
+										"currency_symbol": "$"
+									}, {
+										"store_name": "Target",
+										"store_price": "2.49",
+										"product_url": "http://goto.target.com/c/0/201333/2092?prodsku=13292010&u=https://www.target.com/p/jif-174-creamy-peanut-butter-16oz/-/A-13292010",
+										"currency_code": "USD",
+										"currency_symbol": "$"
+									}, {
+										"store_name": "Jet.com",
+										"store_price": "3.66",
+										"product_url": "https://jet.com/product/Jif-Peanut-Butter-Creamy-16-Oz/a301a662b6124ec3a199a7c60d490cc6",
+										"currency_code": "USD",
+										"currency_symbol": "$"
+									}
+								]
+							}
+						]
+					}
+				],
+				"shopping": []
+			},
+			"schedule": {
+				"meal": [{
+						"completed": false,
+						"recipe": {
+							"vegetarian": false,
+							"vegan": false,
+							"glutenFree": true,
+							"dairyFree": true,
+							"sustainable": false,
+							"weightWatcherSmartPoints": 9,
+							"lowFodmap": true,
+							"ketogenic": false,
+							"whole30": false,
+							"preparationMinutes": 5,
+							"cookingMinutes": 10,
+							"sourceUrl": "http://www.nutritionistinthekitch.com/2014/09/24/pb-c-j-protein-french-toast-gluten-free/",
+							"creditText": "Nutritionist in the Kitchen",
+							"pricePerServing": 149.98,
+							"extendedIngredients": [{
+									"id": 99075,
+									"aisle": "Health Foods",
+									"image": "chocolate-protein-powder.jpg",
+									"name": "chocolate protein powder",
+									"originalName": "½ scoop chocolate protein powder (vegan based or whey)**",
+									"amount": 2,
+									"unit": "tablespoons",
+									"measures": {
+										"us": {
+											"amount": 2,
+											"unitShort": "Tbsps",
+											"unitLong": "Tbsps"
+										},
+										"metric": {
+											"amount": 2,
+											"unitShort": "Tbsps",
+											"unitLong": "Tbsps"
+										}
+									}
+								}, {
+									"id": 19165,
+									"aisle": "Baking",
+									"image": "cocoa-powder.png",
+									"name": "cocoa powder",
+									"originalName": "raw cocoa powder",
+									"amount": 0.5,
+									"unit": "tablespoon",
+									"measures": {
+										"us": {
+											"amount": 0.5,
+											"unitShort": "Tbsps",
+											"unitLong": "Tbsps"
+										},
+										"metric": {
+											"amount": 0.5,
+											"unitShort": "Tbsps",
+											"unitLong": "Tbsps"
+										}
+									}
+								}, {
+									"id": 1124,
+									"aisle": "Milk, Eggs, Other Dairy",
+									"image": "egg-white.jpg",
+									"name": "egg whites",
+									"originalName": "egg whites",
+									"amount": 2,
+									"unit": "",
+									"measures": {
+										"us": {
+											"amount": 2,
+											"unitShort": "",
+											"unitLong": ""
+										},
+										"metric": {
+											"amount": 2,
+											"unitShort": "",
+											"unitLong": ""
+										}
+									}
+								}, {
+									"id": 10020088,
+									"aisle": "Pasta and Rice",
+									"image": "rice-wild-uncooked.png",
+									"name": "whole grain  bread",
+									"originalName": "whole grain or gluten free bread**",
+									"amount": 3,
+									"unit": "slices",
+									"measures": {
+										"us": {
+											"amount": 3,
+											"unitShort": "slices",
+											"unitLong": "slices"
+										},
+										"metric": {
+											"amount": 3,
+											"unitShort": "slices",
+											"unitLong": "slices"
+										}
+									}
+								}, {
+									"id": 12220,
+									"aisle": "Health Foods;Baking",
+									"image": "flax-seeds.png",
+									"name": "ground flaxseed",
+									"originalName": "ground flaxseed",
+									"amount": 1,
+									"unit": "tablespoon",
+									"measures": {
+										"us": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										},
+										"metric": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										}
+									}
+								}, {
+									"id": 19297,
+									"aisle": "Nut butters, Jams, and Honey",
+									"image": "grape-jelly.jpg",
+									"name": "jam",
+									"originalName": "organic berry jam**",
+									"amount": 1,
+									"unit": "tablespoon",
+									"measures": {
+										"us": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										},
+										"metric": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										}
+									}
+								}, {
+									"id": 16098,
+									"aisle": "Nut butters, Jams, and Honey",
+									"image": "peanut-butter.png",
+									"name": "peanut butter",
+									"originalName": "natural peanut butter (or almond/cashew/hazelnut/sunflower butter)",
+									"amount": 1,
+									"unit": "tablespoon",
+									"measures": {
+										"us": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										},
+										"metric": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										}
+									}
+								}, {
+									"id": 14412,
+									"aisle": "Beverages",
+									"image": "water.png",
+									"name": "water",
+									"originalName": "water",
+									"amount": 1,
+									"unit": "tablespoon",
+									"measures": {
+										"us": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										},
+										"metric": {
+											"amount": 1,
+											"unitShort": "Tbsp",
+											"unitLong": "Tbsp"
+										}
+									}
+								}
+							],
+							"id": 613300,
+							"title": "PB + C + J Protein French Toast (gluten free!)",
+							"readyInMinutes": 15,
+							"servings": 1,
+							"image": "https://spoonacular.com/recipeImages/613300-556x370.jpg",
+							"imageType": "jpg",
+							"nutrition": {
+								"nutrients": [{
+										"title": "Calories",
+										"amount": 325.26,
+										"unit": "cal",
+										"percentOfDailyNeeds": 16.26
+									}, {
+										"title": "Fat",
+										"amount": 13.15,
+										"unit": "g",
+										"percentOfDailyNeeds": 20.23
+									}, {
+										"title": "Saturated Fat",
+										"amount": 2.97,
+										"unit": "g",
+										"percentOfDailyNeeds": 18.56
+									}, {
+										"title": "Carbohydrates",
+										"amount": 29.64,
+										"unit": "g",
+										"percentOfDailyNeeds": 9.88
+									}, {
+										"title": "Sugar",
+										"amount": 12.65,
+										"unit": "g",
+										"percentOfDailyNeeds": 14.06
+									}, {
+										"title": "Cholesterol",
+										"amount": 32.94,
+										"unit": "mg",
+										"percentOfDailyNeeds": 10.98
+									}, {
+										"title": "Sodium",
+										"amount": 298.32,
+										"unit": "mg",
+										"percentOfDailyNeeds": 12.97
+									}, {
+										"title": "Caffeine",
+										"amount": 5.75,
+										"unit": "mg",
+										"percentOfDailyNeeds": 1.92
+									}, {
+										"title": "Protein",
+										"amount": 29.31,
+										"unit": "g",
+										"percentOfDailyNeeds": 58.62
+									}, {
+										"title": "Vitamin B2",
+										"amount": 1.72,
+										"unit": "mg",
+										"percentOfDailyNeeds": 101.21
+									}, {
+										"title": "Vitamin B3",
+										"amount": 19.16,
+										"unit": "mg",
+										"percentOfDailyNeeds": 95.78
+									}, {
+										"title": "Vitamin B1",
+										"amount": 1.37,
+										"unit": "mg",
+										"percentOfDailyNeeds": 91.5
+									}, {
+										"title": "Vitamin B6",
+										"amount": 1.79,
+										"unit": "mg",
+										"percentOfDailyNeeds": 89.4
+									}, {
+										"title": "Vitamin B5",
+										"amount": 8.63,
+										"unit": "mg",
+										"percentOfDailyNeeds": 86.3
+									}, {
+										"title": "Vitamin B12",
+										"amount": 4.99,
+										"unit": "µg",
+										"percentOfDailyNeeds": 83.22
+									}, {
+										"title": "Fiber",
+										"amount": 8.22,
+										"unit": "g",
+										"percentOfDailyNeeds": 32.89
+									}, {
+										"title": "Manganese",
+										"amount": 0.56,
+										"unit": "mg",
+										"percentOfDailyNeeds": 27.93
+									}, {
+										"title": "Calcium",
+										"amount": 226.6,
+										"unit": "mg",
+										"percentOfDailyNeeds": 22.66
+									}, {
+										"title": "Selenium",
+										"amount": 15.52,
+										"unit": "µg",
+										"percentOfDailyNeeds": 22.17
+									}, {
+										"title": "Magnesium",
+										"amount": 77.42,
+										"unit": "mg",
+										"percentOfDailyNeeds": 19.35
+									}, {
+										"title": "Potassium",
+										"amount": 538.98,
+										"unit": "mg",
+										"percentOfDailyNeeds": 15.4
+									}, {
+										"title": "Copper",
+										"amount": 0.31,
+										"unit": "mg",
+										"percentOfDailyNeeds": 15.38
+									}, {
+										"title": "Phosphorus",
+										"amount": 146.36,
+										"unit": "mg",
+										"percentOfDailyNeeds": 14.64
+									}, {
+										"title": "Vitamin E",
+										"amount": 1.51,
+										"unit": "mg",
+										"percentOfDailyNeeds": 10.07
+									}, {
+										"title": "Zinc",
+										"amount": 1.15,
+										"unit": "mg",
+										"percentOfDailyNeeds": 7.67
+									}, {
+										"title": "Iron",
+										"amount": 1.25,
+										"unit": "mg",
+										"percentOfDailyNeeds": 6.95
+									}, {
+										"title": "Folate",
+										"amount": 26.18,
+										"unit": "µg",
+										"percentOfDailyNeeds": 6.55
+									}, {
+										"title": "Vitamin C",
+										"amount": 1.8,
+										"unit": "mg",
+										"percentOfDailyNeeds": 2.18
+									}
+								],
+								"caloricBreakdown": {
+									"percentProtein": 33.1,
+									"percentFat": 33.42,
+									"percentCarbs": 33.48
+								},
+								"weightPerServing": {
+									"amount": 152,
+									"unit": "g"
+								}
+							},
+							"cuisines": [
+								"american"
+							],
+							"diets": [
+								"gluten free",
+								"dairy free",
+								"fodmap friendly"
+							],
+							"analyzedInstructions": [{
+									"steps": [{
+											"number": 1,
+											"step": "In a bowl combine egg whites, cocoa, protein, water, and flax and stir until a smooth consistency is reached.On a large plate line up the pieces of bread.",
+											"ingredients": [{
+													"id": 1124,
+													"name": "egg whites",
+													"image": "egg-white.jpg"
+												}, {
+													"id": 19165,
+													"name": "cocoa powder",
+													"image": "cocoa-powder.png"
+												}, {
+													"id": 14412,
+													"name": "water",
+													"image": "water.png"
+												}, {
+													"id": 10012220,
+													"name": "flaxseed",
+													"image": "flax-seeds.png"
+												}
+											],
+											"equipment": [{
+													"id": 404783,
+													"name": "bowl",
+													"image": "bowl.jpg"
+												}
+											]
+										}, {
+											"number": 2,
+											"step": "Pour half of the mixture evenly over each piece of bread and spread over to cover each slice evenly.",
+											"ingredients": [],
+											"equipment": []
+										}, {
+											"number": 3,
+											"step": "Let the mixture soak in for a minute or two and flip each piece and repeat with the remaining cocoa mixture on the other side of each piece of bread.",
+											"ingredients": [{
+													"id": 19165,
+													"name": "cocoa powder",
+													"image": "cocoa-powder.png"
+												}
+											],
+											"equipment": []
+										}, {
+											"number": 4,
+											"step": "Heat a non-stick pan at medium heat, once hot, add in 1 piece of the soaked bread and let cook for 1-2 minutes, then flip and cook for 1-2 minutes more. Repeat with each slice of soaked bread.You may need to scoop the excess cocoa mixture back onto the bread if it hasn't soaked in.Stack your bread and serve with nut butter and jam!Enjoy!",
+											"ingredients": [{
+													"id": 19165,
+													"name": "cocoa powder",
+													"image": "cocoa-powder.png"
+												}, {
+													"id": 19297,
+													"name": "jam",
+													"image": "strawberry-jam.png"
+												}
+											],
+											"equipment": [{
+													"id": 404645,
+													"name": "frying pan",
+													"image": "pan.png"
+												}
+											],
+											"length": {
+												"number": 4,
+												"unit": "minutes"
+											}
+										}
+									]
+								}
+							],
+							"creditsText": "Nutritionist in the Kitchen"
+						}
+					}
+				],
+				"side": [],
+				"dessert": []
+			},
+			"favorites": {
+				"meal": [{
+						"weightWatcherSmartPoints": 9,
+						"preparationMinutes": 5,
+						"cookingMinutes": 10,
+						"sourceUrl": "http://www.nutritionistinthekitch.com/2014/09/24/pb-c-j-protein-french-toast-gluten-free/",
+						"creditText": "Nutritionist in the Kitchen",
+						"pricePerServing": 149.98,
+						"extendedIngredients": [{
+								"id": 99075,
+								"aisle": "Health Foods",
+								"image": "chocolate-protein-powder.jpg",
+								"name": "chocolate protein powder",
+								"originalName": "½ scoop chocolate protein powder (vegan based or whey)**",
+								"amount": 2,
+								"unit": "tablespoons",
+								"measures": {
+									"us": {
+										"amount": 2,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									},
+									"metric": {
+										"amount": 2,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									}
+								}
+							}, {
+								"id": 19165,
+								"aisle": "Baking",
+								"image": "cocoa-powder.png",
+								"name": "cocoa powder",
+								"originalName": "raw cocoa powder",
+								"amount": 0.5,
+								"unit": "tablespoon",
+								"measures": {
+									"us": {
+										"amount": 0.5,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									},
+									"metric": {
+										"amount": 0.5,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									}
+								}
+							}, {
+								"id": 1124,
+								"aisle": "Milk, Eggs, Other Dairy",
+								"image": "egg-white.jpg",
+								"name": "egg whites",
+								"originalName": "egg whites",
+								"amount": 2,
+								"unit": "",
+								"measures": {
+									"us": {
+										"amount": 2,
+										"unitShort": "",
+										"unitLong": ""
+									},
+									"metric": {
+										"amount": 2,
+										"unitShort": "",
+										"unitLong": ""
+									}
+								}
+							}, {
+								"id": 10020088,
+								"aisle": "Pasta and Rice",
+								"image": "rice-wild-uncooked.png",
+								"name": "whole grain  bread",
+								"originalName": "whole grain or gluten free bread**",
+								"amount": 3,
+								"unit": "slices",
+								"measures": {
+									"us": {
+										"amount": 3,
+										"unitShort": "slices",
+										"unitLong": "slices"
+									},
+									"metric": {
+										"amount": 3,
+										"unitShort": "slices",
+										"unitLong": "slices"
+									}
+								}
+							}, {
+								"id": 12220,
+								"aisle": "Health Foods;Baking",
+								"image": "flax-seeds.png",
+								"name": "ground flaxseed",
+								"originalName": "ground flaxseed",
+								"amount": 1,
+								"unit": "tablespoon",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									}
+								}
+							}, {
+								"id": 19297,
+								"aisle": "Nut butters, Jams, and Honey",
+								"image": "grape-jelly.jpg",
+								"name": "jam",
+								"originalName": "organic berry jam**",
+								"amount": 1,
+								"unit": "tablespoon",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									}
+								}
+							}, {
+								"id": 16098,
+								"aisle": "Nut butters, Jams, and Honey",
+								"image": "peanut-butter.png",
+								"name": "peanut butter",
+								"originalName": "natural peanut butter (or almond/cashew/hazelnut/sunflower butter)",
+								"amount": 1,
+								"unit": "tablespoon",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									}
+								}
+							}, {
+								"id": 14412,
+								"aisle": "Beverages",
+								"image": "water.png",
+								"name": "water",
+								"originalName": "water",
+								"amount": 1,
+								"unit": "tablespoon",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "Tbsp",
+										"unitLong": "Tbsp"
+									}
+								}
+							}
+						],
+						"id": 613300,
+						"title": "PB + C + J Protein French Toast (gluten free!)",
+						"readyInMinutes": 15,
+						"servings": 1,
+						"image": "https://spoonacular.com/recipeImages/613300-556x370.jpg",
+						"imageType": "jpg",
+						"nutrition": {
+							"nutrients": [{
+									"title": "Calories",
+									"amount": 325.26,
+									"unit": "cal",
+									"percentOfDailyNeeds": 16.26
+								}, {
+									"title": "Fat",
+									"amount": 13.15,
+									"unit": "g",
+									"percentOfDailyNeeds": 20.23
+								}, {
+									"title": "Saturated Fat",
+									"amount": 2.97,
+									"unit": "g",
+									"percentOfDailyNeeds": 18.56
+								}, {
+									"title": "Carbohydrates",
+									"amount": 29.64,
+									"unit": "g",
+									"percentOfDailyNeeds": 9.88
+								}, {
+									"title": "Sugar",
+									"amount": 12.65,
+									"unit": "g",
+									"percentOfDailyNeeds": 14.06
+								}, {
+									"title": "Cholesterol",
+									"amount": 32.94,
+									"unit": "mg",
+									"percentOfDailyNeeds": 10.98
+								}, {
+									"title": "Sodium",
+									"amount": 298.32,
+									"unit": "mg",
+									"percentOfDailyNeeds": 12.97
+								}, {
+									"title": "Caffeine",
+									"amount": 5.75,
+									"unit": "mg",
+									"percentOfDailyNeeds": 1.92
+								}, {
+									"title": "Protein",
+									"amount": 29.31,
+									"unit": "g",
+									"percentOfDailyNeeds": 58.62
+								}, {
+									"title": "Vitamin B2",
+									"amount": 1.72,
+									"unit": "mg",
+									"percentOfDailyNeeds": 101.21
+								}, {
+									"title": "Vitamin B3",
+									"amount": 19.16,
+									"unit": "mg",
+									"percentOfDailyNeeds": 95.78
+								}, {
+									"title": "Vitamin B1",
+									"amount": 1.37,
+									"unit": "mg",
+									"percentOfDailyNeeds": 91.5
+								}, {
+									"title": "Vitamin B6",
+									"amount": 1.79,
+									"unit": "mg",
+									"percentOfDailyNeeds": 89.4
+								}, {
+									"title": "Vitamin B5",
+									"amount": 8.63,
+									"unit": "mg",
+									"percentOfDailyNeeds": 86.3
+								}, {
+									"title": "Vitamin B12",
+									"amount": 4.99,
+									"unit": "µg",
+									"percentOfDailyNeeds": 83.22
+								}, {
+									"title": "Fiber",
+									"amount": 8.22,
+									"unit": "g",
+									"percentOfDailyNeeds": 32.89
+								}, {
+									"title": "Manganese",
+									"amount": 0.56,
+									"unit": "mg",
+									"percentOfDailyNeeds": 27.93
+								}, {
+									"title": "Calcium",
+									"amount": 226.6,
+									"unit": "mg",
+									"percentOfDailyNeeds": 22.66
+								}, {
+									"title": "Selenium",
+									"amount": 15.52,
+									"unit": "µg",
+									"percentOfDailyNeeds": 22.17
+								}, {
+									"title": "Magnesium",
+									"amount": 77.42,
+									"unit": "mg",
+									"percentOfDailyNeeds": 19.35
+								}, {
+									"title": "Potassium",
+									"amount": 538.98,
+									"unit": "mg",
+									"percentOfDailyNeeds": 15.4
+								}, {
+									"title": "Copper",
+									"amount": 0.31,
+									"unit": "mg",
+									"percentOfDailyNeeds": 15.38
+								}, {
+									"title": "Phosphorus",
+									"amount": 146.36,
+									"unit": "mg",
+									"percentOfDailyNeeds": 14.64
+								}, {
+									"title": "Vitamin E",
+									"amount": 1.51,
+									"unit": "mg",
+									"percentOfDailyNeeds": 10.07
+								}, {
+									"title": "Zinc",
+									"amount": 1.15,
+									"unit": "mg",
+									"percentOfDailyNeeds": 7.67
+								}, {
+									"title": "Iron",
+									"amount": 1.25,
+									"unit": "mg",
+									"percentOfDailyNeeds": 6.95
+								}, {
+									"title": "Folate",
+									"amount": 26.18,
+									"unit": "µg",
+									"percentOfDailyNeeds": 6.55
+								}, {
+									"title": "Vitamin C",
+									"amount": 1.8,
+									"unit": "mg",
+									"percentOfDailyNeeds": 2.18
+								}
+							],
+							"caloricBreakdown": {
+								"percentProtein": 33.1,
+								"percentFat": 33.42,
+								"percentCarbs": 33.48
+							},
+							"weightPerServing": {
+								"amount": 152,
+								"unit": "g"
+							}
+						},
+						"cuisines": [
+							"american"
+						],
+						"diets": [
+							"gluten free",
+							"dairy free",
+							"fodmap friendly"
+						],
+						"analyzedInstructions": [{
+								"steps": [{
+										"number": 1,
+										"step": "In a bowl combine egg whites, cocoa, protein, water, and flax and stir until a smooth consistency is reached.On a large plate line up the pieces of bread.",
+										"ingredients": [{
+												"id": 1124,
+												"name": "egg whites",
+												"image": "egg-white.jpg"
+											}, {
+												"id": 19165,
+												"name": "cocoa powder",
+												"image": "cocoa-powder.png"
+											}, {
+												"id": 14412,
+												"name": "water",
+												"image": "water.png"
+											}, {
+												"id": 10012220,
+												"name": "flaxseed",
+												"image": "flax-seeds.png"
+											}
+										],
+										"equipment": [{
+												"id": 404783,
+												"name": "bowl",
+												"image": "bowl.jpg"
+											}
+										]
+									}, {
+										"number": 2,
+										"step": "Pour half of the mixture evenly over each piece of bread and spread over to cover each slice evenly.",
+										"ingredients": [],
+										"equipment": []
+									}, {
+										"number": 3,
+										"step": "Let the mixture soak in for a minute or two and flip each piece and repeat with the remaining cocoa mixture on the other side of each piece of bread.",
+										"ingredients": [{
+												"id": 19165,
+												"name": "cocoa powder",
+												"image": "cocoa-powder.png"
+											}
+										],
+										"equipment": []
+									}, {
+										"number": 4,
+										"step": "Heat a non-stick pan at medium heat, once hot, add in 1 piece of the soaked bread and let cook for 1-2 minutes, then flip and cook for 1-2 minutes more. Repeat with each slice of soaked bread.You may need to scoop the excess cocoa mixture back onto the bread if it hasn't soaked in.Stack your bread and serve with nut butter and jam!Enjoy!",
+										"ingredients": [{
+												"id": 19165,
+												"name": "cocoa powder",
+												"image": "cocoa-powder.png"
+											}, {
+												"id": 19297,
+												"name": "jam",
+												"image": "strawberry-jam.png"
+											}
+										],
+										"equipment": [{
+												"id": 404645,
+												"name": "frying pan",
+												"image": "pan.png"
+											}
+										],
+										"length": {
+											"number": 4,
+											"unit": "minutes"
+										}
+									}
+								]
+							}
+						],
+						"creditsText": "Nutritionist in the Kitchen"
+					}
+				],
+				"side": [],
+				"dessert": []
+			}
+		}
+	}
+}

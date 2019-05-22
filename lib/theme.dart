@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whats4dinner/utils/responsive.dart';
 
 ThemeData buildTheme() {
   // We're going to define all of our font styles

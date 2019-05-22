@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/widget/signin_btn.dart';
 import 'package:whats4dinner/utils/responsive.dart';
+import 'package:whats4dinner/widget/state_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -20,19 +21,21 @@ class LoginScreen extends StatelessWidget {
               // Space between "Recipes" and the button:
               SizedBox(height: Responsiveness.setHeight(context, 100.0)),
               GoogleSignInButton(
-                onPressed: () => print("Google Sign In pressed."),
+                onPressed: () => StateWidget.of(context).signInWithGoogle(),
               ),
               SizedBox(height: Responsiveness.setHeight(context, 5.0)),
               FacebookSignInButton(
                 onPressed: () => print("Facebook Sign In pressed."),
               ),
-              SizedBox(height: Responsiveness.setHeight(context, 100.0)),
-              Text(
-                "\u00a9 2019 - Curtis Conaway Technologies",
-                style: TextStyle(
-                  fontSize: Responsiveness.setHeight(context, 14.0),
-                  color: Colors.black,
-                  fontFamily: "Rubik",
+              Positioned(
+                bottom: 20.0,
+                child: Text(
+                  "\u00a9 2019 - Curtis Conaway Technologies",
+                  style: TextStyle(
+                    fontSize: Responsiveness.setHeight(context, 14.0),
+                    color: Colors.white,
+                    fontFamily: "Rubik",
+                  ),
                 ),
               ),
             ],

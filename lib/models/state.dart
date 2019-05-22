@@ -1,6 +1,14 @@
 import 'user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class StateModel{
-  static bool isLoading = false;
-  static User userInfo;
+  bool isLoading;
+  User userInfo;
+  FirebaseUser user;
+
+  StateModel({
+    this.isLoading = false,
+    this.user,
+    this.userInfo,
+  });
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/screens/login.dart';
-import 'package:whats4dinner/screens/main.dart';
+import 'package:whats4dinner/screens/home.dart';
 import 'package:whats4dinner/theme.dart';
 
 class Whats4DinnerApp extends StatelessWidget {
@@ -10,7 +10,6 @@ class Whats4DinnerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "What's 4 Dinner",
       theme: buildTheme(),
-      initialRoute: '/login',
       routes: {
         // If you're using navigation routes, Flutter needs a base route.
         // We're going to change this route once we're ready with
