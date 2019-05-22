@@ -131,6 +131,7 @@ class RecipeListItem extends StatelessWidget {
           Image.network(
             this.recipe.image,
             height: Responsiveness.setHeight(context, 55.0),
+            width: Responsiveness.setWidth(context, 55.0),
             fit: BoxFit.cover,
           ),
           SizedBox(width: Responsiveness.setWidth(context, 20.0)),
