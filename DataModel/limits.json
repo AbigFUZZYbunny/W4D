@@ -1,0 +1,8 @@
+{
+	"recipes": 30,
+	"restaurants": 30,
+	"spoonacular": {
+		"requests": 50,
+		"results": 500
+	}
+}

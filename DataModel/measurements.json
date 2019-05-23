@@ -1,0 +1,12 @@
+{
+	"us": {
+		"amount": 2,
+		"unitShort": "Tbsps",
+		"unitLong": "Tbsps"
+	},
+	"metric": {
+		"amount": 2,
+		"unitShort": "Tbsps",
+		"unitLong": "Tbsps"
+	}
+}

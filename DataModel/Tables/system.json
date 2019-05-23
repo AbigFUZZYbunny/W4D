@@ -1,0 +1,8 @@
+{
+	"system": {
+		"spoonacular": {
+			"results": 500,
+			"requests": 50
+		}
+	}
+}
