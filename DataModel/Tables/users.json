@@ -777,7 +777,456 @@
 						}
 					}
 				],
-				"side": [],
+				"side": [{
+						"vegetarian": true,
+						"vegan": false,
+						"glutenFree": true,
+						"dairyFree": false,
+						"sustainable": false,
+						"weightWatcherSmartPoints": 10,
+						"lowFodmap": false,
+						"ketogenic": false,
+						"whole30": false,
+						"preparationMinutes": 5,
+						"cookingMinutes": 35,
+						"sourceUrl": "http://littlespicejar.com/cheddar-mashed-potatoes/",
+						"creditText": "Little Spice Jar",
+						"pricePerServing": 63.18,
+						"extendedIngredients": [{
+								"id": 11353,
+								"aisle": "Produce",
+								"image": "russet-or-idaho-potatoes.png",
+								"name": "russet potatoes",
+								"originalName": "red, yukon, or russet potatoes, peeled, cubed into 2 inch pieces",
+								"amount": 2,
+								"unit": "lbs",
+								"measures": {
+									"us": {
+										"amount": 2,
+										"unitShort": "lb",
+										"unitLong": "pounds"
+									},
+									"metric": {
+										"amount": 907.185,
+										"unitShort": "g",
+										"unitLong": "grams"
+									}
+								}
+							}, {
+								"id": 11215,
+								"aisle": "Produce",
+								"image": "garlic.jpg",
+								"name": "whole garlic",
+								"originalName": "1-4 whole cloves of garlic, peeled",
+								"amount": 1,
+								"unit": "cloves",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "cloves",
+										"unitLong": "clove"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "cloves",
+										"unitLong": "clove"
+									}
+								}
+							}, {
+								"id": 1102047,
+								"aisle": "Spices and Seasonings",
+								"image": "salt-and-pepper.jpg",
+								"name": "salt and pepper",
+								"originalName": "salt and pepper, to taste",
+								"amount": 1,
+								"unit": "serving",
+								"measures": {
+									"us": {
+										"amount": 1,
+										"unitShort": "serving",
+										"unitLong": "serving"
+									},
+									"metric": {
+										"amount": 1,
+										"unitShort": "serving",
+										"unitLong": "serving"
+									}
+								}
+							}, {
+								"id": 1001,
+								"aisle": "Milk, Eggs, Other Dairy",
+								"image": "butter-sliced.jpg",
+								"name": "butter",
+								"originalName": "butter, cubed",
+								"amount": 4,
+								"unit": "tablespoons",
+								"measures": {
+									"us": {
+										"amount": 4,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									},
+									"metric": {
+										"amount": 4,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									}
+								}
+							}, {
+								"id": 1056,
+								"aisle": "Milk, Eggs, Other Dairy",
+								"image": "sour-cream.jpg",
+								"name": "sour cream",
+								"originalName": "sour cream",
+								"amount": 0.5,
+								"unit": "cup",
+								"measures": {
+									"us": {
+										"amount": 0.5,
+										"unitShort": "cups",
+										"unitLong": "cups"
+									},
+									"metric": {
+										"amount": 118.294,
+										"unitShort": "ml",
+										"unitLong": "milliliters"
+									}
+								}
+							}, {
+								"id": 1009,
+								"aisle": "Cheese",
+								"image": "cheddar-cheese.png",
+								"name": "cheddar cheese",
+								"originalName": "cheddar cheese",
+								"amount": 1.5,
+								"unit": "cups",
+								"measures": {
+									"us": {
+										"amount": 1.5,
+										"unitShort": "cups",
+										"unitLong": "cups"
+									},
+									"metric": {
+										"amount": 354.882,
+										"unitShort": "ml",
+										"unitLong": "milliliters"
+									}
+								}
+							}, {
+								"id": 1049,
+								"aisle": "Milk, Eggs, Other Dairy",
+								"image": "fluid-cream.jpg",
+								"name": "half and half",
+								"originalName": "⅔ – 1cup half and half or milk (room temp)",
+								"amount": 0.6666666666666666,
+								"unit": "cup",
+								"measures": {
+									"us": {
+										"amount": 0.667,
+										"unitShort": "cups",
+										"unitLong": "cups"
+									},
+									"metric": {
+										"amount": 157.725,
+										"unitShort": "ml",
+										"unitLong": "milliliters"
+									}
+								}
+							}, {
+								"id": 11156,
+								"aisle": "Produce",
+								"image": "fresh-chives.jpg",
+								"name": "chives",
+								"originalName": "chopped chives",
+								"amount": 3,
+								"unit": "tablespoons",
+								"measures": {
+									"us": {
+										"amount": 3,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									},
+									"metric": {
+										"amount": 3,
+										"unitShort": "Tbsps",
+										"unitLong": "Tbsps"
+									}
+								}
+							}
+						],
+						"id": 983603,
+						"title": "Seriously Amazing Cheddar Mashed Potatoes",
+						"readyInMinutes": 40,
+						"servings": 8,
+						"image": "https://spoonacular.com/recipeImages/983603-556x370.jpg",
+						"imageType": "jpg",
+						"nutrition": {
+							"nutrients": [{
+									"title": "Calories",
+									"amount": 280.02,
+									"unit": "cal",
+									"percentOfDailyNeeds": 14
+								}, {
+									"title": "Fat",
+									"amount": 17.96,
+									"unit": "g",
+									"percentOfDailyNeeds": 27.62
+								}, {
+									"title": "Saturated Fat",
+									"amount": 11.19,
+									"unit": "g",
+									"percentOfDailyNeeds": 69.96
+								}, {
+									"title": "Carbohydrates",
+									"amount": 22.22,
+									"unit": "g",
+									"percentOfDailyNeeds": 7.41
+								}, {
+									"title": "Sugar",
+									"amount": 1.29,
+									"unit": "g",
+									"percentOfDailyNeeds": 1.43
+								}, {
+									"title": "Cholesterol",
+									"amount": 52.23,
+									"unit": "mg",
+									"percentOfDailyNeeds": 17.41
+								}, {
+									"title": "Sodium",
+									"amount": 231.31,
+									"unit": "mg",
+									"percentOfDailyNeeds": 10.06
+								}, {
+									"title": "Protein",
+									"amount": 8.72,
+									"unit": "g",
+									"percentOfDailyNeeds": 17.43
+								}, {
+									"title": "Vitamin B6",
+									"amount": 0.43,
+									"unit": "mg",
+									"percentOfDailyNeeds": 21.47
+								}, {
+									"title": "Phosphorus",
+									"amount": 209.44,
+									"unit": "mg",
+									"percentOfDailyNeeds": 20.94
+								}, {
+									"title": "Calcium",
+									"amount": 207.9,
+									"unit": "mg",
+									"percentOfDailyNeeds": 20.79
+								}, {
+									"title": "Potassium",
+									"amount": 546.64,
+									"unit": "mg",
+									"percentOfDailyNeeds": 15.62
+								}, {
+									"title": "Vitamin A",
+									"amount": 598.31,
+									"unit": "IU",
+									"percentOfDailyNeeds": 11.97
+								}, {
+									"title": "Vitamin B2",
+									"amount": 0.18,
+									"unit": "mg",
+									"percentOfDailyNeeds": 10.34
+								}, {
+									"title": "Manganese",
+									"amount": 0.19,
+									"unit": "mg",
+									"percentOfDailyNeeds": 9.62
+								}, {
+									"title": "Vitamin C",
+									"amount": 7.55,
+									"unit": "mg",
+									"percentOfDailyNeeds": 9.15
+								}, {
+									"title": "Magnesium",
+									"amount": 36.18,
+									"unit": "mg",
+									"percentOfDailyNeeds": 9.04
+								}, {
+									"title": "Zinc",
+									"amount": 1.16,
+									"unit": "mg",
+									"percentOfDailyNeeds": 7.75
+								}, {
+									"title": "Vitamin B1",
+									"amount": 0.11,
+									"unit": "mg",
+									"percentOfDailyNeeds": 7.53
+								}, {
+									"title": "Iron",
+									"amount": 1.18,
+									"unit": "mg",
+									"percentOfDailyNeeds": 6.58
+								}, {
+									"title": "Copper",
+									"amount": 0.13,
+									"unit": "mg",
+									"percentOfDailyNeeds": 6.55
+								}, {
+									"title": "Vitamin B3",
+									"amount": 1.23,
+									"unit": "mg",
+									"percentOfDailyNeeds": 6.17
+								}, {
+									"title": "Selenium",
+									"amount": 4.27,
+									"unit": "µg",
+									"percentOfDailyNeeds": 6.1
+								}, {
+									"title": "Fiber",
+									"amount": 1.51,
+									"unit": "g",
+									"percentOfDailyNeeds": 6.04
+								}, {
+									"title": "Vitamin K",
+									"amount": 6.04,
+									"unit": "µg",
+									"percentOfDailyNeeds": 5.76
+								}, {
+									"title": "Folate",
+									"amount": 22.7,
+									"unit": "µg",
+									"percentOfDailyNeeds": 5.68
+								}, {
+									"title": "Vitamin B5",
+									"amount": 0.55,
+									"unit": "mg",
+									"percentOfDailyNeeds": 5.49
+								}, {
+									"title": "Vitamin B12",
+									"amount": 0.29,
+									"unit": "µg",
+									"percentOfDailyNeeds": 4.91
+								}, {
+									"title": "Vitamin E",
+									"amount": 0.37,
+									"unit": "mg",
+									"percentOfDailyNeeds": 2.45
+								}, {
+									"title": "Vitamin D",
+									"amount": 0.33,
+									"unit": "µg",
+									"percentOfDailyNeeds": 2.2
+								}
+							],
+							"caloricBreakdown": {
+								"percentProtein": 12.22,
+								"percentFat": 56.63,
+								"percentCarbs": 31.15
+							},
+							"weightPerServing": {
+								"amount": 178,
+								"unit": "g"
+							}
+						},
+						"cuisines": [],
+						"diets": [
+							"gluten free",
+							"lacto ovo vegetarian"
+						],
+						"analyzedInstructions": [{
+								"steps": [{
+										"number": 1,
+										"step": "Place the peeled potatoes in a large pot or dutch oven.",
+										"ingredients": [],
+										"equipment": [{
+												"id": 404667,
+												"name": "dutch oven",
+												"image": "dutch-oven.jpg"
+											}
+										]
+									}, {
+										"number": 2,
+										"step": "Add cold water to the pot so that the potatoes are completely submerged and the water is about 2 inches over the potatoes.",
+										"ingredients": [],
+										"equipment": [{
+												"id": 404752,
+												"name": "pot",
+												"image": "stock-pot.jpg"
+											}
+										]
+									}, {
+										"number": 3,
+										"step": "Add teaspoon of salt and the peeled garlic cloves to the water. Turn the heat on high and bring the potatoes to a boil. Cook the potatoes for 15-20 minutes or until they are fork tender.",
+										"ingredients": [{
+												"id": 11215,
+												"name": "whole garlic cloves",
+												"image": "garlic.jpg"
+											}, {
+												"id": 2047,
+												"name": "salt",
+												"image": "salt.jpg"
+											}
+										],
+										"equipment": [],
+										"length": {
+											"number": 20,
+											"unit": "minutes"
+										}
+									}, {
+										"number": 4,
+										"step": "Drain the potatoes, but do not rinse.",
+										"ingredients": [],
+										"equipment": []
+									}, {
+										"number": 5,
+										"step": "Add the potatoes back into the pot and add the cubed butter in. Using a potato masher or a hand beater, mash/beat the potatoes to desired consistency. Switch to a rubber spatula and fold in the sour cream, and cheddar cheese.",
+										"ingredients": [{
+												"id": 1009,
+												"name": "cheddar cheese",
+												"image": "cheddar-cheese.png"
+											}, {
+												"id": 1056,
+												"name": "sour cream",
+												"image": "sour-cream.jpg"
+											}, {
+												"id": 1001,
+												"name": "butter",
+												"image": "butter-sliced.jpg"
+											}
+										],
+										"equipment": [{
+												"id": 404763,
+												"name": "potato masher",
+												"image": "potato-masher.jpg"
+											}, {
+												"id": 404642,
+												"name": "spatula",
+												"image": "spatula-or-turner.jpg"
+											}, {
+												"id": 404752,
+												"name": "pot",
+												"image": "stock-pot.jpg"
+											}
+										]
+									}, {
+										"number": 6,
+										"step": "Add cup of half and half and stir to combine. Continue adding half and half until the potatoes reach your desired consistency. Sprinkle with the chives. Season with salt and pepper to taste.",
+										"ingredients": [{
+												"id": 1102047,
+												"name": "salt and pepper",
+												"image": "salt-and-pepper.jpg"
+											}, {
+												"id": 1049,
+												"name": "half and half",
+												"image": "fluid-cream.jpg"
+											}, {
+												"id": 11156,
+												"name": "chives",
+												"image": "fresh-chives.jpg"
+											}
+										],
+										"equipment": []
+									}
+								]
+							}
+						]
+					}
+				],
 				"dessert": []
 			},
 			"favorites": {
