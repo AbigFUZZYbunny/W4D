@@ -10,7 +10,7 @@
 					],
 					"dinnerBellTxt": "Time for dinner!",
 					"newRecommendations": true,
-					"ingredientExp": true
+					"expiration": true
 				},
 				"schedule": {
 					"sideDishes": true,
@@ -247,6 +247,7 @@
 					]
 				},
 				"ingredients": {
+					"measureUnit": "us",
 					"favoritesFilterLevel": 0,
 					"favorites": [],
 					"ignored": []
@@ -1641,7 +1642,12 @@
 				],
 				"side": [],
 				"dessert": []
-			}
+			},
+			"subscription": [{
+				"level": 3,
+				"start": "2018-01-01T00:00:00.000Z",
+				"end": "2020-01-01T00:00:00.000Z"
+			}]
 		}
 	}
 }

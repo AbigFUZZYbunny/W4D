@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
 
-Future<bool> updateFavorites(String uid, Recipe recipe) {
+Future<bool> updateFavoriteMeal(String uid, Recipe recipe) {
   DocumentReference favoritesReference = Firestore.instance.collection('users').document(uid).collection('favorites').document("meal");
 
   return Firestore.instance.runTransaction((Transaction tx) async {

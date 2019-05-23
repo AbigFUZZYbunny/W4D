@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:whats4dinner/models/state.dart';
+import 'package:whats4dinner/models/user.dart';
 import 'package:whats4dinner/utils/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StateWidget extends StatefulWidget {
   final StateModel state;
@@ -55,17 +57,28 @@ class _StateWidgetState extends State<StateWidget> {
     }
   }
 
+  Future<User> getUser() async {
+    DocumentSnapshot querySnapshot = await Firestore.instance
+        .collection('users')
+        .document(state.user.uid)
+        .get();
+    if (querySnapshot.exists) {
+      return User.fromMap(querySnapshot.data);
+    }
+    return User.newUser();
+  }
+
   Future<Null> signInWithGoogle() async {
     if (googleAccount == null) {
       // Start the sign-in process:
       googleAccount = await googleSignIn.signIn();
     }
     FirebaseUser firebaseUser = await signIntoFirebase(googleAccount);
+    User user = await getUser();
     setState(() {
       state.isLoading = false;
       state.user = firebaseUser;
-      //this is where the navigation needs to replace the login screen with the home screen
-
+      state.userInfo = user;
     });
   }
 
