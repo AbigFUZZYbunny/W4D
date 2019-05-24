@@ -5,7 +5,7 @@ import 'package:whats4dinner/models/recipe_item.dart';
 class FavoritesFunctions {
 
   static Function(int, BuildContext) inFavorites = (id, context) => (){
-    for (var r in StateWidget.of(context).state.userInfo.favorites.meal) {
+    for (var r in StateWidget.of(context).state.userInfo.favorites) {
       if (r.id == id)
         return true;
     }
@@ -13,9 +13,9 @@ class FavoritesFunctions {
 
   static Function(Recipe, BuildContext) addRemoveFavorite = (r, context) => (){
     if(!inFavorites(r.id, context)){
-      StateWidget.of(context).state.userInfo.favorites.meal.add(r);
+      StateWidget.of(context).state.userInfo.favorites.add(r);
     }else{
-      StateWidget.of(context).state.userInfo.favorites.meal.remove(r);
+      StateWidget.of(context).state.userInfo.favorites.removeWhere((rec) => rec.id == r.id);
     }
   };
 }

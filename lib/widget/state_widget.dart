@@ -69,9 +69,8 @@ class _StateWidgetState extends State<StateWidget> {
         schedule: await getSchedule(_uid),
         favorites: await getFavorites(_uid),
         subscription: await getSubscription(_uid),
-        requiredGroceries: await getRequiredIngredients(_uid),
-        stockGroceries: await getStockIngredients(_uid),
-        shoppingList: await getShoppingList(_uid),
+        stock: await getStockIngredients(_uid),
+        shopping: await getShoppingList(_uid),
       );
       //return User.fromMap(querySnapshot.data);
     }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
 import 'package:whats4dinner/models/subscription_record.dart';
@@ -10,7 +9,8 @@ Future<List<Recipe>> getSchedule(String uid) async {
   QuerySnapshot _sch = await Firestore.instance
       .collection('users')
       .document(uid)
-      .collection('schedule').getDocuments();
+      .collection('schedule')
+      .getDocuments();
   for(var doc in _sch.documents){
     _ret.add(new Recipe.fromMap(doc.data));
   }
@@ -22,7 +22,8 @@ Future<List<Recipe>> getFavorites(String uid) async {
   QuerySnapshot _fav = await Firestore.instance
       .collection('users')
       .document(uid)
-      .collection('favorites').getDocuments();
+      .collection('favorites')
+      .getDocuments();
   for(var doc in _fav.documents){
     _ret.add(new Recipe.fromMap(doc.data));
   }
@@ -42,72 +43,54 @@ Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   return _ret;
 }
 
-Future<List<IngredientItem>> getRequiredIngredients(String uid) async{
-  List<IngredientItem> _ret = new List<IngredientItem>();
-  DocumentSnapshot _ing = await Firestore.instance
-      .collection('users')
-      .document(uid)
-      .collection('groceries')
-      .document('required').get();
-  if(_ing.exists) {
-    _ing.data.forEach((key, value) => (){
-      _ret.add(new IngredientItem.fromMap(value));
-    });
-  }
-  return _ret;
-}
-
 Future<List<IngredientItem>> getStockIngredients(String uid) async{
   List<IngredientItem> _ret = new List<IngredientItem>();
-  DocumentSnapshot _ing = await Firestore.instance
+  QuerySnapshot _ing = await Firestore.instance
       .collection('users')
       .document(uid)
-      .collection('groceries')
-      .document('stock').get();
-  if(_ing.exists) {
-    _ing.data.forEach((key, value) => (){
-      _ret.add(new IngredientItem.fromMap(value));
-    });
+      .collection('stock')
+      .getDocuments();
+  for (var doc in _ing.documents){
+    _ret.add(new IngredientItem.fromMap(doc.data));
   }
   return _ret;
 }
 
 Future<List<IngredientItem>> getShoppingList(String uid) async{
   List<IngredientItem> _ret = new List<IngredientItem>();
-  DocumentSnapshot _ing = await Firestore.instance
+  QuerySnapshot _ing = await Firestore.instance
       .collection('users')
       .document(uid)
-      .collection('groceries')
-      .document('shopping').get();
-  if(_ing.exists) {
-    _ing.data.forEach((key, value) => (){
-      _ret.add(new IngredientItem.fromMap(value));
-    });
+      .collection('shopping')
+      .getDocuments();
+  for (var doc in _ing.documents){
+    _ret.add(new IngredientItem.fromMap(doc.data));
   }
   return _ret;
 }
 
-Future<bool> updateFavoriteMeal(String uid, Recipe recipe) {
-  DocumentReference favoritesReference = Firestore.instance
-      .collection('users')
-      .document(uid)
-      .collection('favorites')
-      .document(recipe.id.toString());
+Future<bool> updateFavoriteMeal(String uid, Recipe recipe) async {
   CollectionReference favoritesCollection = Firestore.instance
       .collection('users')
       .document(uid)
       .collection('favorites');
-  return Firestore.instance.runTransaction((Transaction tx) async {
-    DocumentSnapshot postSnapshot = await tx.get(favoritesReference);
-    if (postSnapshot.exists) {
-      await tx.delete(favoritesReference);
-    } else {
-      await favoritesCollection.add(recipe.toMap());
+  await favoritesCollection.getDocuments().then((qs) => () async {
+    for(var doc in qs.documents){
+      if(doc.data.containsValue(recipe.id)){
+        await Firestore.instance
+            .collection('users')
+            .document(uid)
+            .collection('favorites')
+            .document(doc.documentID)
+            .delete();
+        return true;
+      }else{
+        await favoritesCollection.add(recipe.toMap());
+        return true;
+      }
     }
-  }).then((result) {
-    return true;
   }).catchError((error) {
     print('Error: $error');
-    return false;
   });
+  return false;
 }

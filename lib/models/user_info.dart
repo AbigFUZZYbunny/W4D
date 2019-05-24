@@ -9,18 +9,16 @@ class User {
   List<Recipe> schedule;
   List<Recipe> favorites;
   List<SubscriptionRecord> subscription;
-  List<IngredientItem> requiredGroceries;
-  List<IngredientItem> stockGroceries;
-  List<IngredientItem> shoppingList;
+  List<IngredientItem> stock;
+  List<IngredientItem> shopping;
 
   User({
     this.preferences,
     this.schedule,
     this.favorites,
     this.subscription,
-    this.stockGroceries,
-    this.shoppingList,
-    this.requiredGroceries,
+    this.stock,
+    this.shopping,
   });
 
   factory User.newUser() => new User(
@@ -28,8 +26,7 @@ class User {
     schedule: new List<Recipe>(),
     favorites: new List<Recipe>(),
     subscription: [SubscriptionRecord.newUser()],
-    requiredGroceries: new List<IngredientItem>(),
-    stockGroceries: new List<IngredientItem>(),
-    shoppingList: new List<IngredientItem>(),
+    stock: new List<IngredientItem>(),
+    shopping: new List<IngredientItem>(),
   );
 }

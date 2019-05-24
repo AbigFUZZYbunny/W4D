@@ -62,7 +62,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // Build the content depending on the state:
     appState = StateWidget.of(context).state;
-    nextMeal = StateWidget.of(context).state.userInfo.schedule.meal[0];
+    nextMeal = StateWidget.of(context).state.userInfo.schedule.firstWhere((r) => r.recipeType == "Meal");
     return _buildContent();
   }
 }

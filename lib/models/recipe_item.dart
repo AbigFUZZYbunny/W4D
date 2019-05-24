@@ -8,6 +8,7 @@ import 'nutrient.dart';
 import 'package:whats4dinner/utils/double_convert.dart';
 
 class Recipe {
+  String recipeType;
   int weightWatcherSmartPoints;
   int preparationMinutes;
   int cookingMinutes;
@@ -28,6 +29,7 @@ class Recipe {
   String creditsText;
 
   Recipe({
+    this.recipeType,
     this.weightWatcherSmartPoints,
     this.preparationMinutes,
     this.cookingMinutes,
