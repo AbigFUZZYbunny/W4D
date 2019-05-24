@@ -13,18 +13,27 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => print("Tapped!"),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-        child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // We overlap the image and the button by
-              // creating a Stack object:
-              Stack(
+    return Padding(
+      padding: EdgeInsets.only(left: 15, right: 15, top: 30, bottom: 5),
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    recipe.title,
+                    style: Theme.of(context).textTheme.title,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Stack(
                 children: <Widget>[
                   AspectRatio(
                     aspectRatio: 16.0 / 9.0,
@@ -34,49 +43,77 @@ class RecipeCard extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    child: RawMaterialButton(
-                      constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
-                      onPressed: () => this.handleFavorite,
+                    child:
+                    RawMaterialButton(
+                      constraints: BoxConstraints(minWidth: 50, minHeight: 50),
+                      onPressed: () => handleFavorite(),
                       child: Icon(
                         // Conditional expression:
                         // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
                         FavoritesFunctions.inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
+                        color: Color.fromARGB(255, 50, 50, 50),
+                        size: 30,
                       ),
                       elevation: 2.0,
                       fillColor: Colors.white,
                       shape: CircleBorder(),
                     ),
-                    top: 2.0,
-                    right: 2.0,
+                    top: 20,
+                    right: 20,
+                  ),
+                  Positioned(
+                    child:
+                    Text(
+                      recipe.creditText,
+                      style: TextStyle(color: Colors.white,),
+                    ),
+                    bottom: 5,
+                    right: 10,
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Column(
-                  // Default value for crossAxisAlignment is CrossAxisAlignment.center.
-                  // We want to align title and description of recipes left:
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      recipe.title,
-                    ),
-                    // Empty space:
-                    SizedBox(height: 10.0),
-                    Row(
-                      children: [
-                        Icon(Icons.timer, size: 20.0),
-                        SizedBox(width: 5.0),
+            ),
+            //RecipeInfo(meal), // Create the summary information to be shown
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child:
+                  MaterialButton(
+                    height: 60,
+                    onPressed: () => Navigator.of(context).pushNamed("/mealdetail"),
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
                         Text(
-                          recipe.readyInMinutes.toString(),
+                          "More Details",
+                          style: Theme.of(context).textTheme.caption,
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+                Expanded(
+                  child:
+                  MaterialButton(
+                    height: 60,
+                    onPressed: () => print("Start Meal Pressed"),
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          "Start Meal",
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

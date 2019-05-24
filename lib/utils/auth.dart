@@ -12,13 +12,15 @@ Future<GoogleSignInAccount> getSignedInAccount(
   return account;
 }
 
-Future<FirebaseUser> signIntoFirebase(
-    GoogleSignInAccount googleSignInAccount) async {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  GoogleSignInAuthentication googleAuth =
-  await googleSignInAccount.authentication;
-  return await _auth.signInWithGoogle(
+Future<FirebaseUser> signIntoFirebase(GoogleSignInAccount googleSignInAccount) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
     accessToken: googleAuth.accessToken,
     idToken: googleAuth.idToken,
   );
+
+  final FirebaseUser user = await _auth.signInWithCredential(credential);
+  print("signed in " + user.displayName);
+  return user;
 }
