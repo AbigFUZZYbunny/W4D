@@ -63,29 +63,6 @@ class _StateWidgetState extends State<StateWidget> {
         .document(state.user.uid)
         .get();
     if (querySnapshot.exists) {
-      /*CollectionReference _fav = await Firestore.instance
-          .collection('users')
-          .document(state.user.uid)
-          .collection('favorites');
-      CollectionReference _sch = await Firestore.instance
-          .collection('users')
-          .document(state.user.uid)
-          .collection('schedule');
-      CollectionReference _pref = await Firestore.instance
-          .collection('users')
-          .document(state.user.uid)
-          .collection('preferences');
-      CollectionReference _groc = await Firestore.instance
-          .collection('users')
-          .document(state.user.uid)
-          .collection('groceries');
-      QuerySnapshot _sub = await Firestore.instance
-          .collection('users')
-          .document(state.user.uid)
-          .collection('subscription').getDocuments();
-      _sub.documents.forEach((ds) => (){
-         SubscriptionRecord.fromMap(ds.data);
-      });*/
       return User.fromMap(querySnapshot.data);
     }
     return User.newUser();
