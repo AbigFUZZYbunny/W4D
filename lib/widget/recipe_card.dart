@@ -40,7 +40,7 @@ class RecipeCard extends StatelessWidget {
                       child: Icon(
                         // Conditional expression:
                         // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-                        FavoritesFunctions.inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
+                        inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
                       ),
                       elevation: 2.0,
                       fillColor: Colors.white,

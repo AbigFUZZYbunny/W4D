@@ -6,66 +6,76 @@ import 'package:whats4dinner/models/ingredient_item.dart';
 
 Future<List<Recipe>> getSchedule(String uid) async {
   List<Recipe> _ret = new List<Recipe>();
-  QuerySnapshot _sch = await Firestore.instance
+  await Firestore.instance
       .collection('users')
       .document(uid)
       .collection('schedule')
-      .getDocuments();
-  for(var doc in _sch.documents){
-    _ret.add(new Recipe.fromMap(doc.data));
-  }
+      .getDocuments().then((qs) {
+    for (var doc in qs.documents) {
+      _ret.add(new Recipe.fromMap(doc.data));
+    }
+    return _ret;
+  });
   return _ret;
 }
 
 Future<List<Recipe>> getFavorites(String uid) async {
   List<Recipe> _ret = new List<Recipe>();
-  QuerySnapshot _fav = await Firestore.instance
+  await Firestore.instance
       .collection('users')
       .document(uid)
       .collection('favorites')
-      .getDocuments();
-  for(var doc in _fav.documents){
-    _ret.add(new Recipe.fromMap(doc.data));
-  }
+      .getDocuments().then((qs) {
+    for (var doc in qs.documents) {
+      _ret.add(new Recipe.fromMap(doc.data));
+    }
+    return _ret;
+  });
   return _ret;
 }
 
 Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   List<SubscriptionRecord> _ret = new List<SubscriptionRecord>();
-  QuerySnapshot _sub = await Firestore.instance
+  await Firestore.instance
       .collection('users')
       .document(uid)
       .collection('subscription')
-      .getDocuments();
-  for (var doc in _sub.documents) {
-    _ret.add(new SubscriptionRecord.fromMap(doc.data));
-  }
+      .getDocuments().then((qs) {
+    for (var doc in qs.documents) {
+      _ret.add(new SubscriptionRecord.fromMap(doc.data));
+    }
+    return _ret;
+  });
   return _ret;
 }
 
 Future<List<IngredientItem>> getStockIngredients(String uid) async{
   List<IngredientItem> _ret = new List<IngredientItem>();
-  QuerySnapshot _ing = await Firestore.instance
+  await Firestore.instance
       .collection('users')
       .document(uid)
       .collection('stock')
-      .getDocuments();
-  for (var doc in _ing.documents){
-    _ret.add(new IngredientItem.fromMap(doc.data));
-  }
+      .getDocuments().then((qs) {
+    for (var doc in qs.documents){
+      _ret.add(new IngredientItem.fromMap(doc.data));
+    }
+    return _ret;
+  });
   return _ret;
 }
 
 Future<List<IngredientItem>> getShoppingList(String uid) async{
   List<IngredientItem> _ret = new List<IngredientItem>();
-  QuerySnapshot _ing = await Firestore.instance
+  await Firestore.instance
       .collection('users')
       .document(uid)
       .collection('shopping')
-      .getDocuments();
-  for (var doc in _ing.documents){
-    _ret.add(new IngredientItem.fromMap(doc.data));
-  }
+      .getDocuments().then((qs) {
+    for (var doc in qs.documents){
+      _ret.add(new IngredientItem.fromMap(doc.data));
+    }
+    return _ret;
+  });
   return _ret;
 }
 
