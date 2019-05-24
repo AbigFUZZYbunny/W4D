@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:whats4dinner/models/state.dart';
-import 'package:whats4dinner/models/user.dart';
+import 'package:whats4dinner/models/user_info.dart';
 import 'package:whats4dinner/utils/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whats4dinner/utils/store.dart';
 
 class StateWidget extends StatefulWidget {
   final StateModel state;
@@ -58,12 +59,21 @@ class _StateWidgetState extends State<StateWidget> {
   }
 
   Future<User> getUser() async {
+    var _uid = state.user.uid;
     DocumentSnapshot querySnapshot = await Firestore.instance
         .collection('users')
-        .document(state.user.uid)
+        .document(_uid)
         .get();
     if (querySnapshot.exists) {
-      return User.fromMap(querySnapshot.data);
+      return User(
+        schedule: await getSchedule(_uid),
+        favorites: await getFavorites(_uid),
+        subscription: await getSubscription(_uid),
+        requiredGroceries: await getRequiredIngredients(_uid),
+        stockGroceries: await getStockIngredients(_uid),
+        shoppingList: await getShoppingList(_uid),
+      );
+      //return User.fromMap(querySnapshot.data);
     }
     return User.newUser();
   }

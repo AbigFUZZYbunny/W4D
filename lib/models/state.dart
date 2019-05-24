@@ -1,4 +1,4 @@
-import 'user.dart';
+import 'user_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class StateModel{

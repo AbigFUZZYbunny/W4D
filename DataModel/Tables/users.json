@@ -255,38 +255,166 @@
 			},
 			"groceries": {
 				"required": [{
-						"name": "chocolate protein powder",
-						"amount": 2,
-						"unit": "tablespoons"
-					}, {
-						"name": "cocoa powder",
-						"amount": 0.5,
-						"unit": "tablespoon"
-					}, {
-						"name": "egg whites",
-						"amount": 2,
-						"unit": ""
-					}, {
-						"name": "whole grain bread",
-						"amount": 3,
-						"unit": "slices"
-					}, {
-						"name": "ground flaxseed",
-						"amount": 1,
-						"unit": "tablespoon"
-					}, {
-						"name": "jam",
-						"amount": 1,
-						"unit": "tablespoon"
-					}, {
-						"name": "peanut butter",
-						"amount": 1,
-						"unit": "tablespoon"
-					}, {
-						"name": "water",
-						"amount": 1,
-						"unit": "tablespoon"
-					}
+			"id": 99075,
+			"aisle": "Health Foods",
+			"image": "chocolate-protein-powder.jpg",
+			"name": "chocolate protein powder",
+			"originalName": "½ scoop chocolate protein powder (vegan based or whey)**",
+			"amount": 2,
+			"unit": "tablespoons",
+			"measures": {
+				"us": {
+					"amount": 2,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				},
+				"metric": {
+					"amount": 2,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				}
+			}
+		}, {
+			"id": 19165,
+			"aisle": "Baking",
+			"image": "cocoa-powder.png",
+			"name": "cocoa powder",
+			"originalName": "raw cocoa powder",
+			"amount": 0.5,
+			"unit": "tablespoon",
+			"measures": {
+				"us": {
+					"amount": 0.5,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				},
+				"metric": {
+					"amount": 0.5,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				}
+			}
+		}, {
+			"id": 1124,
+			"aisle": "Milk, Eggs, Other Dairy",
+			"image": "egg-white.jpg",
+			"name": "egg whites",
+			"originalName": "egg whites",
+			"amount": 2,
+			"unit": "",
+			"measures": {
+				"us": {
+					"amount": 2,
+					"unitShort": "",
+					"unitLong": ""
+				},
+				"metric": {
+					"amount": 2,
+					"unitShort": "",
+					"unitLong": ""
+				}
+			}
+		}, {
+			"id": 10020088,
+			"aisle": "Pasta and Rice",
+			"image": "rice-wild-uncooked.png",
+			"name": "whole grain  bread",
+			"originalName": "whole grain or gluten free bread**",
+			"amount": 3,
+			"unit": "slices",
+			"measures": {
+				"us": {
+					"amount": 3,
+					"unitShort": "slices",
+					"unitLong": "slices"
+				},
+				"metric": {
+					"amount": 3,
+					"unitShort": "slices",
+					"unitLong": "slices"
+				}
+			}
+		}, {
+			"id": 12220,
+			"aisle": "Health Foods;Baking",
+			"image": "flax-seeds.png",
+			"name": "ground flaxseed",
+			"originalName": "ground flaxseed",
+			"amount": 1,
+			"unit": "tablespoon",
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		}, {
+			"id": 19297,
+			"aisle": "Nut butters, Jams, and Honey",
+			"image": "grape-jelly.jpg",
+			"name": "jam",
+			"originalName": "organic berry jam**",
+			"amount": 1,
+			"unit": "tablespoon",
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		}, {
+			"id": 16098,
+			"aisle": "Nut butters, Jams, and Honey",
+			"image": "peanut-butter.png",
+			"name": "peanut butter",
+			"originalName": "natural peanut butter (or almond/cashew/hazelnut/sunflower butter)",
+			"amount": 1,
+			"unit": "tablespoon",
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		}, {
+			"id": 14412,
+			"aisle": "Beverages",
+			"image": "water.png",
+			"name": "water",
+			"originalName": "water",
+			"amount": 1,
+			"unit": "tablespoon",
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		}
 				],
 				"stock": [{
 						"id": 16098,
