@@ -79,28 +79,25 @@ Future<List<IngredientItem>> getShoppingList(String uid) async{
   return _ret;
 }
 
-Future<bool> updateFavoriteMeal(String uid, Recipe recipe) async {
+Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
   CollectionReference favoritesCollection = Firestore.instance
       .collection('users')
       .document(uid)
       .collection('favorites');
   await favoritesCollection.getDocuments().then((qs) => () async {
     for(var doc in qs.documents){
-      if(doc.data.containsValue(recipe.id)){
+      if(doc.documentID == recipe.id.toString()){
         await Firestore.instance
             .collection('users')
             .document(uid)
             .collection('favorites')
-            .document(doc.documentID)
+            .document(recipe.id.toString())
             .delete();
-        return true;
       }else{
         await favoritesCollection.add(recipe.toMap());
-        return true;
       }
     }
   }).catchError((error) {
     print('Error: $error');
   });
-  return false;
 }

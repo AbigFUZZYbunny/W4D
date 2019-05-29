@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
-import 'package:whats4dinner/utils/favorites.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
+  final bool isFavorite;
   final Function handleFavorite;
 
   RecipeCard({
+    @required this.isFavorite,
     @required this.recipe,
     @required this.handleFavorite,
   });
@@ -40,7 +41,7 @@ class RecipeCard extends StatelessWidget {
                       child: Icon(
                         // Conditional expression:
                         // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-                        inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
+                        isFavorite == true ? Icons.favorite : Icons.favorite_border,
                       ),
                       elevation: 2.0,
                       fillColor: Colors.white,

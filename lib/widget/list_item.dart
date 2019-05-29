@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:whats4dinner/utils/responsive.dart';
 import 'package:whats4dinner/utils/double_convert.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
-import 'package:whats4dinner/utils/favorites.dart';
 
 class SettingsButton extends StatelessWidget {
   final IconData icon;
@@ -119,8 +118,9 @@ class SettingsFilter extends StatelessWidget {
 class RecipeListItem extends StatelessWidget {
   final Recipe recipe;
   final Function(Recipe) onPressed;
+  final bool isFavorite;
 
-  RecipeListItem(this.recipe, this.onPressed,);
+  RecipeListItem(this.recipe, this.onPressed, this.isFavorite,);
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +147,9 @@ class RecipeListItem extends StatelessWidget {
                   Positioned(
                     child: RawMaterialButton(
                       constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
-                      onPressed: () => addRemoveFavorite(recipe, context),
+                      onPressed: () => null,//addRemoveFavorite(recipe, context),
                       child: Icon(
-                        inFavorites(recipe.id, context) == true ? Icons.favorite : Icons.favorite_border,
+                        isFavorite == true ? Icons.favorite : Icons.favorite_border,
                       ),
                       elevation: 2.0,
                       fillColor: Colors.white,
