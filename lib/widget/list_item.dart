@@ -107,7 +107,7 @@ class SettingsFilter extends StatelessWidget {
             min: 0,
             max: 100,
             divisions: 20,
-            value: Converter.dynamicToDouble(this.val),
+            value: dynamicToDouble(this.val),
           ),
         ],
       ),

@@ -55,7 +55,8 @@ class Recipe {
   factory Recipe.fromSpoonacular(String str) {
     var j = json.decode(str);
     Recipe r = new Recipe.fromMap(j);
-    r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)));
+    if(j["extendedIngredients"] != null)
+      r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)));
     return r;
   }
 
@@ -67,7 +68,7 @@ class Recipe {
     cookingMinutes: json["cookingMinutes"] == null ? null : json["cookingMinutes"],
     sourceUrl: json["sourceUrl"] == null ? null : json["sourceUrl"],
     creditText: json["creditText"] == null ? null : json["creditText"],
-    pricePerServing: json["pricePerServing"] == null ? null : Converter.dynamicToDouble(json["pricePerServing"]),
+    pricePerServing: json["pricePerServing"] == null ? null : dynamicToDouble(json["pricePerServing"]),
     extendedIngredients: new List<IngredientItem>(),
     id: json["id"] == null ? null : json["id"],
     title: json["title"] == null ? null : json["title"],
@@ -202,7 +203,7 @@ class Length {
   String toJson() => json.encode(toMap());
 
   factory Length.fromMap(Map json) => new Length(
-    number: json["number"] == null ? null : Converter.dynamicToDouble(json["number"]),
+    number: json["number"] == null ? null : dynamicToDouble(json["number"]),
     unit: json["unit"] == null ? null : json["unit"],
   );
 
@@ -256,9 +257,9 @@ class CaloricBreakdown {
   String toJson() => json.encode(toMap());
 
   factory CaloricBreakdown.fromMap(Map json) => new CaloricBreakdown(
-    percentProtein: json["percentProtein"] == null ? null : Converter.dynamicToDouble(json["percentProtein"]),
-    percentFat: json["percentFat"] == null ? null : Converter.dynamicToDouble(json["percentFat"]),
-    percentCarbs: json["percentCarbs"] == null ? null : Converter.dynamicToDouble(json["percentCarbs"]),
+    percentProtein: json["percentProtein"] == null ? null : dynamicToDouble(json["percentProtein"]),
+    percentFat: json["percentFat"] == null ? null : dynamicToDouble(json["percentFat"]),
+    percentCarbs: json["percentCarbs"] == null ? null : dynamicToDouble(json["percentCarbs"]),
   );
 
   Map<String, dynamic> toMap() => {
@@ -282,7 +283,7 @@ class WeightPerServing {
   String toJson() => json.encode(toMap());
 
   factory WeightPerServing.fromMap(Map json) => new WeightPerServing(
-    amount: json["amount"] == null ? null : Converter.dynamicToDouble(json["amount"]),
+    amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unit: json["unit"] == null ? null : json["unit"],
   );
 

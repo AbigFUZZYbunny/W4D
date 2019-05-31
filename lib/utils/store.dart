@@ -11,7 +11,9 @@ Future<List<Recipe>> getSchedule(String uid) async {
           .collection('users')
           .document(uid)
           .collection('schedule')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }
 Future<List<Recipe>> getFavorites(String uid) async {
   return await getRecipes(
@@ -19,7 +21,9 @@ Future<List<Recipe>> getFavorites(String uid) async {
           .collection('users')
           .document(uid)
           .collection('favorites')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }Future<List<IngredientItem>> getScheduleRecipeIngredients(String uid, String rid) async{
   return await getIngredientsList(
       Firestore.instance
@@ -28,7 +32,9 @@ Future<List<Recipe>> getFavorites(String uid) async {
           .collection('schedule')
           .document(rid)
           .collection('extendedIngredients')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }
 Future<List<IngredientItem>> getFavoriteRecipeIngredients(String uid, String rid) async{
   return await getIngredientsList(
@@ -38,7 +44,9 @@ Future<List<IngredientItem>> getFavoriteRecipeIngredients(String uid, String rid
           .collection('favorites')
           .document(rid)
           .collection('extendedIngredients')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }
 Future<List<Recipe>> getRecipes(CollectionReference ref) async{
   List<Recipe> _ret = new List<Recipe>();
@@ -67,6 +75,8 @@ Future<List<SubscriptionRecord>> getSubscription(String uid) async{
       _ret.add(new SubscriptionRecord.fromMap(doc.data));
     }
     return _ret;
+  }).catchError((error) {
+    print('Error: $error');
   });
   return _ret;
 }
@@ -76,7 +86,9 @@ Future<List<IngredientItem>> getStockIngredients(String uid) async{
           .collection('users')
           .document(uid)
           .collection('pantry')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }
 Future<List<IngredientItem>> getShoppingList(String uid) async{
   return await getIngredientsList(
@@ -84,7 +96,9 @@ Future<List<IngredientItem>> getShoppingList(String uid) async{
       .collection('users')
       .document(uid)
       .collection('shopping')
-  );
+  ).catchError((error) {
+    print('Error: $error');
+  });
 }
 Future<List<IngredientItem>> getIngredientsList(CollectionReference ref) async{
   List<IngredientItem> _ret = new List<IngredientItem>();
@@ -113,7 +127,10 @@ Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
             .document(uid)
             .collection('favorites')
             .document(recipe.id.toString())
-            .delete();
+            .delete()
+            .catchError((error) {
+              print('Error: $error');
+            });
       }else{
         await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
       }
@@ -130,6 +147,8 @@ Future<Preferences> getPreferences(String uid) async{
   Preferences _ret = new Preferences();
   _ret.ingredients = await preferenceCollection.document('ingredients').get().then((ds) {
     return PrefIngredients.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.ingredients.favorites = await getIngredientsList(
       preferenceCollection
@@ -143,25 +162,38 @@ Future<Preferences> getPreferences(String uid) async{
   );
   _ret.allergies = await preferenceCollection.document('allergies').get().then((ds) {
     return Map.from(ds.data).map((k, v) => new MapEntry<String, bool>(k, v));
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.favorites = await preferenceCollection.document('favorites').get().then((ds) {
     return PrefFavorites.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.schedule = await preferenceCollection.document('schedule').get().then((ds) {
     return PrefSchedule.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.notifications = await preferenceCollection.document('notifications').get().then((ds) {
     return PrefNotifications.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.cuisines = await preferenceCollection.document('cuisines').get().then((ds) {
     return PrefCuisines.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.diets = await preferenceCollection.document('diets').get().then((ds) {
     return PrefDiets.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
   _ret.nutrition = await preferenceCollection.document('nutrition').get().then((ds) {
     return PrefNutrition.fromMap(ds.data);
+  }).catchError((error) {
+    print('Error: $error');
   });
-
   return _ret;
 }

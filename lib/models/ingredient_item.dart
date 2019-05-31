@@ -29,7 +29,7 @@ class IngredientItem {
 
   String toJson() => json.encode(toMap());
 
-  factory IngredientItem.fromMap(Map<String, dynamic> json) => new IngredientItem(
+  factory IngredientItem.fromMap(Map json) => new IngredientItem(
     id: json["id"] == null ? null : json["id"],
     aisle: json["aisle"] == null ? null : json["aisle"],
     image: json["image"] == null ? null : json["image"],
@@ -83,7 +83,7 @@ class GroceryItem {
 
   String toJson() => json.encode(toMap());
 
-  factory GroceryItem.fromMap(Map<String, dynamic> json) => new GroceryItem(
+  factory GroceryItem.fromMap(Map json) => new GroceryItem(
     barcodeNumber: json["barcode_number"] == null ? null : json["barcode_number"],
     productName: json["product_name"] == null ? null : json["product_name"],
     category: json["category"] == null ? null : json["category"],
@@ -127,7 +127,7 @@ class Store {
 
   String toJson() => json.encode(toMap());
 
-  factory Store.fromMap(Map<String, dynamic> json) => new Store(
+  factory Store.fromMap(Map json) => new Store(
     storeName: json["store_name"] == null ? null : json["store_name"],
     storePrice: json["store_price"] == null ? null : json["store_price"],
     productUrl: json["product_url"] == null ? null : json["product_url"],
@@ -157,7 +157,7 @@ class Measures {
 
   String toJson() => json.encode(toMap());
 
-  factory Measures.fromMap(Map<String, dynamic> json) => new Measures(
+  factory Measures.fromMap(Map json) => new Measures(
     us: json["us"] == null ? null : Amount.fromMap(json["us"]),
     metric: json["metric"] == null ? null : Amount.fromMap(json["metric"]),
   );
@@ -183,7 +183,7 @@ class Amount {
 
   String toJson() => json.encode(toMap());
 
-  factory Amount.fromMap(Map<String, dynamic> json) => new Amount(
+  factory Amount.fromMap(Map json) => new Amount(
     amount: json["amount"] == null ? null : json["amount"],
     unitShort: json["unitShort"] == null ? null : json["unitShort"],
     unitLong: json["unitLong"] == null ? null : json["unitLong"],

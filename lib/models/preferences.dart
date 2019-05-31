@@ -94,7 +94,7 @@ class PrefDiets {
 
   factory PrefDiets.fromMap(Map json) => new PrefDiets(
     filterLevel: json["filterLevel"] == null ? 0 : json["filterLevel"],
-    diets: json["diets"] == null ? newDiets() : new Map.from(json["diets"]).map((k, v) => new MapEntry<String, dynamic>(k, v)),
+    diets: json["diets"] == null ? newDiets() : new Map.from(json["diets"]).map((k, v) => new MapEntry<String, bool>(k, v)),
   );
 
   Map<String, dynamic> toMap() => {

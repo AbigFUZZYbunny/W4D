@@ -35,13 +35,13 @@ class Nutrient {
 
   String toJson() => json.encode(toMap());
 
-  factory Nutrient.fromMap(Map<String, dynamic> json) => new Nutrient(
+  factory Nutrient.fromMap(Map json) => new Nutrient(
     title: json["title"] == null ? null : json["title"],
-    min: json["min"] == null ? null : Converter.dynamicToDouble(json["min"]),
-    max: json["max"] == null ? null : Converter.dynamicToDouble(json["max"]),
-    amount: json["amount"] == null ? null : Converter.dynamicToDouble(json["amount"]),
+    min: json["min"] == null ? null : dynamicToDouble(json["min"]),
+    max: json["max"] == null ? null : dynamicToDouble(json["max"]),
+    amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unit: json["unit"] == null ? null : json["unit"],
-    percentOfDailyNeeds: json["percentOfDailyNeeds"] == null ? null : Converter.dynamicToDouble(json["percentOfDailyNeeds"]),
+    percentOfDailyNeeds: json["percentOfDailyNeeds"] == null ? null : dynamicToDouble(json["percentOfDailyNeeds"]),
   );
 
   Map<String, dynamic> toMap() => {

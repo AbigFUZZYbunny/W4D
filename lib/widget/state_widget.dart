@@ -66,6 +66,7 @@ class _StateWidgetState extends State<StateWidget> {
         .document(_uid)
         .get();
     if (querySnapshot.exists) {
+      print("get user from firestore");
       return User(
         schedule: await getSchedule(_uid),
         favorites: await getFavorites(_uid),
@@ -75,6 +76,7 @@ class _StateWidgetState extends State<StateWidget> {
         preferences: await getPreferences(_uid),
       );
     }else {
+      print("new user created");
       return User.newUser();
     }
   }
@@ -86,6 +88,7 @@ class _StateWidgetState extends State<StateWidget> {
     }
     FirebaseUser firebaseUser = await signIntoFirebase(googleAccount);
     User user = await getUser(firebaseUser.uid);
+    print(user);
     if(user.schedule.length == 0) {
       Recipe _rec = await getRandomRecipe(user.preferences);
       user.schedule.add(_rec);

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "527604482151",
+    "firebase_url": "https://whats-4-dinner-238815.firebaseio.com",
+    "project_id": "whats-4-dinner-238815",
+    "storage_bucket": "whats-4-dinner-238815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527604482151:android:16bb8c39aab6a1b7",
+        "android_client_info": {
+          "package_name": "app.cctech.whats4dinner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527604482151-a0p85dfc1gjhq375prukedv98duova6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.cctech.whats4dinner",
+            "certificate_hash": "61f24f1498f7b6c4cf48412a97d0b774ed39641f"
+          }
+        },
+        {
+          "client_id": "527604482151-g9113nv58b2m7tbr83fq79veomc52kum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ZphsxlkgST4leyzw9T5_tzjYbVIup3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527604482151-g9113nv58b2m7tbr83fq79veomc52kum.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "527604482151-pijrbcsf6aob0udf5iljvg51k4fah8nn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.cctech.whats4dinner"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
