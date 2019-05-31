@@ -150,15 +150,10 @@ Future<Preferences> getPreferences(String uid) async{
   }).catchError((error) {
     print('Error: $error');
   });
-  _ret.ingredients.favorites = await getIngredientsList(
+  _ret.ingredients.favoriteGroceries = await getIngredientsList(
       preferenceCollection
           .document('ingredients')
           .collection('favorites')
-  );
-  _ret.ingredients.ignored = await getIngredientsList(
-      preferenceCollection
-          .document('ingredients')
-          .collection('ignored')
   );
   _ret.allergies = await preferenceCollection.document('allergies').get().then((ds) {
     return Map.from(ds.data).map((k, v) => new MapEntry<String, bool>(k, v));

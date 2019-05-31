@@ -7,8 +7,9 @@ import 'dart:math';
 String url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes';
 
 Future<Recipe> getRandomRecipe(Preferences _pref) async{
+  int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
-    '$url/searchComplex?type=main+course&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=1' + buildParameters(_pref),
+    '$url/searchComplex?limitLicense=false&type=main+course&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
@@ -20,8 +21,9 @@ Future<Recipe> getRandomRecipe(Preferences _pref) async{
 }
 
 Future<Recipe> getRandomSide(Preferences _pref) async{
+  int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
-    '$url/searchComplex?type=side+item&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=1' + buildParameters(_pref),
+    '$url/searchComplex?limitLicense=false&type=side+item&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
@@ -33,8 +35,9 @@ Future<Recipe> getRandomSide(Preferences _pref) async{
 }
 
 Future<Recipe> getRandomDessert(Preferences _pref) async{
+  int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
-    '$url/searchComplex?type=dessert&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=1' + buildParameters(_pref),
+    '$url/searchComplex?limitLicense=false&type=dessert&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
@@ -66,17 +69,21 @@ String buildParameters(Preferences _pref){
   });
   String diet = _i.join(", ");
   _i.clear();
-  for(var ing in _pref.ingredients.favorites){
-    _i.add(ing.name);
+  if(_pref.ingredients.favoritesFilterLevel == 1) {
+    for (var ing in _pref.ingredients.favorites) {
+      _i.add(ing);
+    }
+  }else if (_pref.ingredients.favoritesFilterLevel == 0){
+    //this will need to loop through the pantry ingredients to create the parameter list
+
   }
-  String fav = _i.join(", ");
+  String favIng = _i.join(", ");
   _i.clear();
   for(var ing in _pref.ingredients.ignored){
-    _i.add(ing.name);
+    _i.add(ing);
   }
-  String ign = _i.join(", ");
+  String ignIng = _i.join(", ");
   _i.clear();
-
   if(cuisines != null && cuisines != ""){
     _ret += "&cuisine=$cuisines";
   }
@@ -86,11 +93,11 @@ String buildParameters(Preferences _pref){
   if(diet != null && diet != ""){
     _ret += "&diet=$diet";
   }
-  if(fav != null && fav != ""){
-    _ret += "&includeIngredients=$fav";
+  if(favIng != null && favIng != ""){
+    _ret += "&includeIngredients=$favIng";
   }
-  if(ign != null && ign != ""){
-    _ret += "&excludeIngredients=$ign";
+  if(ignIng != null && ignIng != ""){
+    _ret += "&excludeIngredients=$ignIng";
   }
   print(_ret);
   return _ret;

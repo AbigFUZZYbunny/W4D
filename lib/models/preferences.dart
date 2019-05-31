@@ -133,21 +133,24 @@ class PrefFavorites {
 }
 
 class PrefIngredients {
-  int favoritesFilterLevel;
+  int favoritesFilterLevel; //0 = use pantry ingredients, 1 = prioritize fav ingredients, 2 = best match results either way
   String measureUnit;
-  List<IngredientItem> favorites;
-  List<IngredientItem> ignored;
+  List<IngredientItem> favoriteGroceries;
+  List<String> ignored;
+  List<String> favorites;
 
   PrefIngredients({
     this.favoritesFilterLevel,
     this.favorites,
     this.ignored,
     this.measureUnit,
+    this.favoriteGroceries,
   });
 
   factory PrefIngredients.newUser() => PrefIngredients(
-    favorites: new List<IngredientItem>(),
-    ignored: new List<IngredientItem>(),
+    favoriteGroceries: new List<IngredientItem>(),
+    ignored: new List<String>(),
+    favorites: new List<String>(),
     favoritesFilterLevel: 0,
     measureUnit: "us",
   );
@@ -159,8 +162,9 @@ class PrefIngredients {
   factory PrefIngredients.fromMap(Map json) => new PrefIngredients(
     favoritesFilterLevel: json["favoritesFilterLevel"] == null ? 0 : json["favoritesFilterLevel"],
     measureUnit: json["measureUnit"] == null ? "us" : json["measureUnit"],
-    favorites: new List<IngredientItem>(),
-    ignored: new List<IngredientItem>(),
+    favoriteGroceries: new List<IngredientItem>(),
+    ignored: json["ignored"] == null ? new List<String>() : new List<String>.from(json["ignored"].map((x) => x)),
+    favorites: json["favorites"] == null ? new List<String>() : new List<String>.from(json["favorites"].map((x) => x)),
   );
 
   Map<String, dynamic> toMap() => {

@@ -55,6 +55,7 @@ flutter:
     - res/img/login_bg/veggie-campfire-frittata-9.jpg
     - res/img/branding/google_icon.png
     - res/img/branding/facebook_icon.png
+    - lib/data/ingredients.csv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

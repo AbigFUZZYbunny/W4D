@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
+
 List<String> dietsList(){
   List<String> _ret = ["pescetarian", "lacto vegetarian", "ovo vegetarian", "vegan", "paleo", "primal", "vegetarian"];
   return _ret;
@@ -53,4 +57,27 @@ Map<String, String> nutrientsList(){
     "Zinc": "mg"
   };
   return _ret;
+}
+
+List<String> ingredientsList(){
+  List<String> _ret = new List<String>();
+  final File file = new File("lib/data/ingredients.csv");
+
+  Stream<List> inputStream = file.openRead();
+
+  inputStream
+      .transform(utf8.decoder)       // Decode bytes to UTF-8.
+      .transform(new LineSplitter()) // Convert stream to individual lines.
+      .listen((String line) {        // Process results.
+
+    List row = line.split(','); // split by comma
+
+    String name = row[0];
+    int id = int.parse(row[1]);
+
+    print('$id, $name');
+    _ret.add(name);
+  },
+      onDone: () { print('File is now closed.'); return _ret;},
+      onError: (e) { print(e.toString()); });
 }
