@@ -5,6 +5,7 @@ import 'package:whats4dinner/widget/recipe_card.dart';
 import 'package:whats4dinner/models/state.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/screens/login.dart';
+import 'package:whats4dinner/screens/loading.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,9 +19,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget _buildContent() {
     if (appState.isLoading) {
-      return Scaffold(
-        body: _buildLoadingIndicator(),
-      );
+      return new LoadingScreen();
     } else if (!appState.isLoading && appState.user == null) {
       return new LoginScreen();
     } else {
@@ -33,21 +32,6 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
-  }
-
-  Center _buildLoadingIndicator() {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text(
-            "What's 4 Dinner",
-            style: Theme.of(context).textTheme.headline,
-          ),
-          SizedBox(height: 100),
-          CircularProgressIndicator(),
-        ],
-      ),
-    );
   }
 
   // Inactive widgets are going to call this method to

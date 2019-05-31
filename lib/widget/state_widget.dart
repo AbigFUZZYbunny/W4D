@@ -49,8 +49,10 @@ class _StateWidgetState extends State<StateWidget> {
   }
 
   Future<Null> initUser() async {
+    setState(() {
+      state.loadingStatus = "Initializing User Profile";
+    });
     googleAccount = await getSignedInAccount(googleSignIn);
-
     if (googleAccount == null) {
       setState(() {
         state.isLoading = false;
@@ -66,7 +68,9 @@ class _StateWidgetState extends State<StateWidget> {
         .document(_uid)
         .get();
     if (querySnapshot.exists) {
-      print("get user from firestore");
+      setState(() {
+        state.loadingStatus = "Getting W4D User Information";
+      });
       return User(
         schedule: await getSchedule(_uid),
         favorites: await getFavorites(_uid),
@@ -76,12 +80,17 @@ class _StateWidgetState extends State<StateWidget> {
         preferences: await getPreferences(_uid),
       );
     }else {
-      print("new user created");
+      setState(() {
+        state.loadingStatus = "Creating new User record";
+      });
       return User.newUser();
     }
   }
 
   Future<Null> signInWithGoogle() async {
+    setState(() {
+      state.loadingStatus = "Signing in with Google";
+    });
     if (googleAccount == null) {
       // Start the sign-in process:
       googleAccount = await googleSignIn.signIn();
@@ -95,6 +104,7 @@ class _StateWidgetState extends State<StateWidget> {
     }
     setState(() {
       state.isLoading = false;
+      state.loadingStatus = "";
       state.user = firebaseUser;
       state.userInfo = user;
     });
