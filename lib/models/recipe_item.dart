@@ -52,6 +52,13 @@ class Recipe {
 
   factory Recipe.fromJson(String str) => Recipe.fromMap(json.decode(str));
 
+  factory Recipe.fromSpoonacular(String str) {
+    var j = json.decode(str);
+    Recipe r = new Recipe.fromMap(j);
+    r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)))
+    return r;
+  }
+
   String toJson() => json.encode(toMap());
 
   factory Recipe.fromMap(Map json) => new Recipe(
@@ -61,7 +68,7 @@ class Recipe {
     sourceUrl: json["sourceUrl"] == null ? null : json["sourceUrl"],
     creditText: json["creditText"] == null ? null : json["creditText"],
     pricePerServing: json["pricePerServing"] == null ? null : Converter.dynamicToDouble(json["pricePerServing"]),
-    extendedIngredients: json["extendedIngredients"] == null ? null : new List<IngredientItem>.from(json["extendedIngredients"].map((x) => IngredientItem.fromMap(x))),
+    extendedIngredients: new List<IngredientItem>(),
     id: json["id"] == null ? null : json["id"],
     title: json["title"] == null ? null : json["title"],
     readyInMinutes: json["readyInMinutes"] == null ? null : json["readyInMinutes"],

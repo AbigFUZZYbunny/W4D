@@ -8,6 +8,8 @@ import 'package:whats4dinner/models/user_info.dart';
 import 'package:whats4dinner/utils/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whats4dinner/utils/store.dart';
+import 'package:whats4dinner/utils/spoonacular.dart';
+import 'package:whats4dinner/models/recipe_item.dart';
 
 class StateWidget extends StatefulWidget {
   final StateModel state;
@@ -58,8 +60,7 @@ class _StateWidgetState extends State<StateWidget> {
     }
   }
 
-  Future<User> getUser() async {
-    var _uid = state.user.uid;
+  Future<User> getUser(_uid) async {
     DocumentSnapshot querySnapshot = await Firestore.instance
         .collection('users')
         .document(_uid)
@@ -69,12 +70,13 @@ class _StateWidgetState extends State<StateWidget> {
         schedule: await getSchedule(_uid),
         favorites: await getFavorites(_uid),
         subscription: await getSubscription(_uid),
-        stock: await getStockIngredients(_uid),
+        pantry: await getStockIngredients(_uid),
         shopping: await getShoppingList(_uid),
+        preferences: await getPreferences(_uid),
       );
-      //return User.fromMap(querySnapshot.data);
+    }else {
+      return User.newUser();
     }
-    return User.newUser();
   }
 
   Future<Null> signInWithGoogle() async {
@@ -83,7 +85,11 @@ class _StateWidgetState extends State<StateWidget> {
       googleAccount = await googleSignIn.signIn();
     }
     FirebaseUser firebaseUser = await signIntoFirebase(googleAccount);
-    User user = await getUser();
+    User user = await getUser(firebaseUser.uid);
+    if(user.schedule.length == 0) {
+      Recipe _rec = await getRandomRecipe(user.preferences);
+      user.schedule.add(_rec);
+    }
     setState(() {
       state.isLoading = false;
       state.user = firebaseUser;

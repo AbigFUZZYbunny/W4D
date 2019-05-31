@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'recipe_item.dart';
 import 'preferences.dart';
 import 'ingredient_item.dart';
@@ -9,7 +8,7 @@ class User {
   List<Recipe> schedule;
   List<Recipe> favorites;
   List<SubscriptionRecord> subscription;
-  List<IngredientItem> stock;
+  List<IngredientItem> pantry;
   List<IngredientItem> shopping;
 
   User({
@@ -17,7 +16,7 @@ class User {
     this.schedule,
     this.favorites,
     this.subscription,
-    this.stock,
+    this.pantry,
     this.shopping,
   });
 
@@ -26,7 +25,7 @@ class User {
     schedule: new List<Recipe>(),
     favorites: new List<Recipe>(),
     subscription: [SubscriptionRecord.newUser()],
-    stock: new List<IngredientItem>(),
+    pantry: new List<IngredientItem>(),
     shopping: new List<IngredientItem>(),
   );
 }

@@ -3,37 +3,59 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
 import 'package:whats4dinner/models/subscription_record.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
+import 'package:whats4dinner/models/preferences.dart';
 
 Future<List<Recipe>> getSchedule(String uid) async {
-  List<Recipe> _ret = new List<Recipe>();
-  await Firestore.instance
-      .collection('users')
-      .document(uid)
-      .collection('schedule')
-      .getDocuments().then((qs) {
-    for (var doc in qs.documents) {
-      _ret.add(new Recipe.fromMap(doc.data));
-    }
-    return _ret;
-  });
-  return _ret;
+  return await getRecipes(
+      Firestore.instance
+          .collection('users')
+          .document(uid)
+          .collection('schedule')
+  );
 }
-
 Future<List<Recipe>> getFavorites(String uid) async {
+  return await getRecipes(
+      Firestore.instance
+          .collection('users')
+          .document(uid)
+          .collection('favorites')
+  );
+}Future<List<IngredientItem>> getScheduleRecipeIngredients(String uid, String rid) async{
+  return await getIngredientsList(
+      Firestore.instance
+          .collection('users')
+          .document(uid)
+          .collection('schedule')
+          .document(rid)
+          .collection('extendedIngredients')
+  );
+}
+Future<List<IngredientItem>> getFavoriteRecipeIngredients(String uid, String rid) async{
+  return await getIngredientsList(
+      Firestore.instance
+          .collection('users')
+          .document(uid)
+          .collection('favorites')
+          .document(rid)
+          .collection('extendedIngredients')
+  );
+}
+Future<List<Recipe>> getRecipes(CollectionReference ref) async{
   List<Recipe> _ret = new List<Recipe>();
-  await Firestore.instance
-      .collection('users')
-      .document(uid)
-      .collection('favorites')
-      .getDocuments().then((qs) {
-    for (var doc in qs.documents) {
-      _ret.add(new Recipe.fromMap(doc.data));
+  await ref
+      .getDocuments()
+      .then((qs) => () async {
+    for (var doc in qs.documents){
+      Recipe _rec = new Recipe.fromMap(doc.data);
+      _rec.extendedIngredients = await getIngredientsList(ref.document(doc.documentID).collection('extendedIngredients'));
+      _ret.add(_rec);
     }
     return _ret;
+  }).catchError((error) {
+    print('Error: $error');
   });
-  return _ret;
+  return new List<Recipe>();
 }
-
 Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   List<SubscriptionRecord> _ret = new List<SubscriptionRecord>();
   await Firestore.instance
@@ -48,37 +70,36 @@ Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   });
   return _ret;
 }
-
 Future<List<IngredientItem>> getStockIngredients(String uid) async{
-  List<IngredientItem> _ret = new List<IngredientItem>();
-  await Firestore.instance
-      .collection('users')
-      .document(uid)
-      .collection('stock')
-      .getDocuments().then((qs) {
-    for (var doc in qs.documents){
-      _ret.add(new IngredientItem.fromMap(doc.data));
-    }
-    return _ret;
-  });
-  return _ret;
+  return await getIngredientsList(
+      Firestore.instance
+          .collection('users')
+          .document(uid)
+          .collection('pantry')
+  );
 }
-
 Future<List<IngredientItem>> getShoppingList(String uid) async{
-  List<IngredientItem> _ret = new List<IngredientItem>();
-  await Firestore.instance
+  return await getIngredientsList(
+      Firestore.instance
       .collection('users')
       .document(uid)
       .collection('shopping')
-      .getDocuments().then((qs) {
+  );
+}
+Future<List<IngredientItem>> getIngredientsList(CollectionReference ref) async{
+  List<IngredientItem> _ret = new List<IngredientItem>();
+  await ref
+      .getDocuments()
+      .then((qs) => (){
     for (var doc in qs.documents){
       _ret.add(new IngredientItem.fromMap(doc.data));
     }
     return _ret;
+  }).catchError((error) {
+    print('Error: $error');
   });
   return _ret;
 }
-
 Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
   CollectionReference favoritesCollection = Firestore.instance
       .collection('users')
@@ -94,10 +115,53 @@ Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
             .document(recipe.id.toString())
             .delete();
       }else{
-        await favoritesCollection.add(recipe.toMap());
+        await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
       }
     }
   }).catchError((error) {
     print('Error: $error');
   });
+}
+Future<Preferences> getPreferences(String uid) async{
+  CollectionReference preferenceCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  Preferences _ret = new Preferences();
+  _ret.ingredients = await preferenceCollection.document('ingredients').get().then((ds) {
+    return PrefIngredients.fromMap(ds.data);
+  });
+  _ret.ingredients.favorites = await getIngredientsList(
+      preferenceCollection
+          .document('ingredients')
+          .collection('favorites')
+  );
+  _ret.ingredients.ignored = await getIngredientsList(
+      preferenceCollection
+          .document('ingredients')
+          .collection('ignored')
+  );
+  _ret.allergies = await preferenceCollection.document('allergies').get().then((ds) {
+    return Map.from(ds.data).map((k, v) => new MapEntry<String, bool>(k, v));
+  });
+  _ret.favorites = await preferenceCollection.document('favorites').get().then((ds) {
+    return PrefFavorites.fromMap(ds.data);
+  });
+  _ret.schedule = await preferenceCollection.document('schedule').get().then((ds) {
+    return PrefSchedule.fromMap(ds.data);
+  });
+  _ret.notifications = await preferenceCollection.document('notifications').get().then((ds) {
+    return PrefNotifications.fromMap(ds.data);
+  });
+  _ret.cuisines = await preferenceCollection.document('cuisines').get().then((ds) {
+    return PrefCuisines.fromMap(ds.data);
+  });
+  _ret.diets = await preferenceCollection.document('diets').get().then((ds) {
+    return PrefDiets.fromMap(ds.data);
+  });
+  _ret.nutrition = await preferenceCollection.document('nutrition').get().then((ds) {
+    return PrefNutrition.fromMap(ds.data);
+  });
+
+  return _ret;
 }
