@@ -55,7 +55,7 @@ class Recipe {
   factory Recipe.fromSpoonacular(String str) {
     var j = json.decode(str);
     Recipe r = new Recipe.fromMap(j);
-    r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)))
+    r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)));
     return r;
   }
 
