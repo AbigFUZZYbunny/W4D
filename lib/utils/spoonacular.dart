@@ -84,6 +84,7 @@ String buildParameters(Preferences _pref){
   }
   String ignIng = _i.join(", ");
   _i.clear();
+
   if(cuisines != null && cuisines != ""){
     _ret += "&cuisine=$cuisines";
   }
@@ -99,7 +100,7 @@ String buildParameters(Preferences _pref){
   if(ignIng != null && ignIng != ""){
     _ret += "&excludeIngredients=$ignIng";
   }
-  print(_ret);
+  print("spoonacular: " + _ret);
   return _ret;
 }
 
