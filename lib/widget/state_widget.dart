@@ -12,6 +12,7 @@ import 'package:whats4dinner/models/preferences.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:whats4dinner/models/subscription_record.dart';
 import 'package:whats4dinner/utils/spoonacular.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class StateWidget extends StatefulWidget {
   final StateModel state;
@@ -64,8 +65,16 @@ class _StateWidgetState extends State<StateWidget> {
     }
   }
 
+  Future<Null> signInWithFacebook() async{
+    setState(() {
+      state.isLoading = true;
+      state.loadingStatus = "Continuing with Facebook";
+    });
+  }
+
   Future<Null> signInWithGoogle() async {
     setState(() {
+      state.isLoading = true;
       state.loadingStatus = "Signing in with Google";
     });
     if (googleAccount == null) {
