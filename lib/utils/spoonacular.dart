@@ -17,7 +17,11 @@ Future<Recipe> getRandomRecipe(Preferences _pref) async{
   ).catchError((error) {
     print('Error: $error');
   });
-  return Recipe.fromSpoonacular(mealResponse.body);
+  if(mealResponse.statusCode == 200) {
+    return Recipe.fromJson(mealResponse.body);
+  }else {
+    print(mealResponse.statusCode.toString());
+  }
 }
 
 Future<Recipe> getRandomSide(Preferences _pref) async{

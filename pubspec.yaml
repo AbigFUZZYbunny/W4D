@@ -101,3 +101,6 @@ flutter:
     - family: Roboto
       fonts:
         - asset: res/font/Roboto/Roboto-Medium.ttf
+    - family:  CustomIcons
+      fonts:
+        - asset: res/font/custom_icons.ttf

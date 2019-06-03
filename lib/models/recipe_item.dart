@@ -21,7 +21,6 @@ class Recipe {
   int readyInMinutes;
   int servings;
   String image;
-  String imageType;
   Nutrition nutrition;
   List<String> cuisines;
   List<String> diets;
@@ -42,7 +41,6 @@ class Recipe {
     this.readyInMinutes,
     this.servings,
     this.image,
-    this.imageType,
     this.nutrition,
     this.cuisines,
     this.diets,
@@ -55,8 +53,6 @@ class Recipe {
   factory Recipe.fromSpoonacular(String str) {
     var j = json.decode(str);
     Recipe r = new Recipe.fromMap(j);
-    if(j["extendedIngredients"] != null)
-      r.extendedIngredients = List<IngredientItem>.from(j["extendedIngredients"].map((x) => IngredientItem.fromMap(x)));
     return r;
   }
 
@@ -69,18 +65,18 @@ class Recipe {
     sourceUrl: json["sourceUrl"] == null ? null : json["sourceUrl"],
     creditText: json["creditText"] == null ? null : json["creditText"],
     pricePerServing: json["pricePerServing"] == null ? null : dynamicToDouble(json["pricePerServing"]),
-    extendedIngredients: new List<IngredientItem>(),
+    extendedIngredients: json["extendedIngredients"] == null ? new List<IngredientItem>() : new List<IngredientItem>.from(json["extendedIngredients"].map((x) => IngredientItem.fromMap(x))),
     id: json["id"] == null ? null : json["id"],
     title: json["title"] == null ? null : json["title"],
     readyInMinutes: json["readyInMinutes"] == null ? null : json["readyInMinutes"],
     servings: json["servings"] == null ? null : json["servings"],
     image: json["image"] == null ? null : json["image"],
-    imageType: json["imageType"] == null ? null : json["imageType"],
     nutrition: json["nutrition"] == null ? null : Nutrition.fromMap(json["nutrition"]),
     cuisines: json["cuisines"] == null ? null : new List<String>.from(json["cuisines"].map((x) => x)),
     diets: json["diets"] == null ? null : new List<String>.from(json["diets"].map((x) => x)),
     analyzedInstructions: json["analyzedInstructions"] == null ? null : new List<AnalyzedInstruction>.from(json["analyzedInstructions"].map((x) => AnalyzedInstruction.fromMap(x))),
     creditsText: json["creditsText"] == null ? null : json["creditsText"],
+    recipeType: json["type"] == null ? "Meal" : json["type"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -96,7 +92,6 @@ class Recipe {
     "readyInMinutes": readyInMinutes == null ? null : readyInMinutes,
     "servings": servings == null ? null : servings,
     "image": image == null ? null : image,
-    "imageType": imageType == null ? null : imageType,
     "nutrition": nutrition == null ? null : nutrition.toMap(),
     "cuisines": cuisines == null ? null : new List<dynamic>.from(cuisines.map((x) => x)),
     "diets": diets == null ? null : new List<dynamic>.from(diets.map((x) => x)),
@@ -106,7 +101,7 @@ class Recipe {
 }
 
 class AnalyzedInstruction {
-  List<Step> steps;
+  List<RecipeStep> steps;
 
   AnalyzedInstruction({
     this.steps,
@@ -117,7 +112,7 @@ class AnalyzedInstruction {
   String toJson() => json.encode(toMap());
 
   factory AnalyzedInstruction.fromMap(Map json) => new AnalyzedInstruction(
-    steps: json["steps"] == null ? null : new List<Step>.from(json["steps"].map((x) => Step.fromMap(x))),
+    steps: json["steps"] == null ? null : new List<RecipeStep>.from(json["steps"].map((x) => RecipeStep.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -125,14 +120,14 @@ class AnalyzedInstruction {
   };
 }
 
-class Step {
+class RecipeStep {
   int number;
   String step;
   List<IngredientItem> ingredients;
   List<Equipment> equipment;
   Length length;
 
-  Step({
+  RecipeStep({
     this.number,
     this.step,
     this.ingredients,
@@ -140,11 +135,11 @@ class Step {
     this.length,
   });
 
-  factory Step.fromJson(String str) => Step.fromMap(json.decode(str));
+  factory RecipeStep.fromJson(String str) => RecipeStep.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Step.fromMap(Map json) => new Step(
+  factory RecipeStep.fromMap(Map json) => new RecipeStep(
     number: json["number"] == null ? null : json["number"],
     step: json["step"] == null ? null : json["step"],
     ingredients: json["ingredients"] == null ? null : new List<IngredientItem>.from(json["ingredients"].map((x) => IngredientItem.fromMap(x))),

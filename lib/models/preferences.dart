@@ -63,14 +63,14 @@ class PrefCuisines {
 
   factory PrefCuisines.fromMap(Map json) => new PrefCuisines(
     cuisineWeight: json["cuisineWeight"] == null ? null : json["cuisineWeight"],
-    favorites: json["favorites"] == null ? null : new List<String>.from(json["favorites"].map((x) => x)),
-    ignored: json["ignored"] == null ? null : new List<String>.from(json["ignored"].map((x) => x)),
+    favorites: json["cuisineTypes"] == null ? null : new List<String>.from(json["cuisineTypes"].map((x) => x)),
+    //ignored: json["ignored"] == null ? null : new List<String>.from(json["ignored"].map((x) => x)),
   );
 
   Map<String, dynamic> toMap() => {
     "cuisineWeight": cuisineWeight == null ? null : cuisineWeight,
-    "favorites": favorites == null ? null : new List<dynamic>.from(favorites.map((x) => x)),
-    "ignored": ignored == null ? null : new List<dynamic>.from(ignored.map((x) => x)),
+    "cuisineTypes": favorites == null ? null : new List<dynamic>.from(favorites.map((x) => x)),
+    //"ignored": ignored == null ? null : new List<dynamic>.from(ignored.map((x) => x)),
   };
 }
 

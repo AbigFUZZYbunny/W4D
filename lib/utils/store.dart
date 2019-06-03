@@ -5,64 +5,24 @@ import 'package:whats4dinner/models/subscription_record.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:whats4dinner/models/preferences.dart';
 
-Future<List<Recipe>> getSchedule(String uid) async {
-  return await getRecipes(
-      Firestore.instance
-          .collection('users')
-          .document(uid)
-          .collection('schedule')
-  ).catchError((error) {
-    print('Error: $error');
-  });
-}
-Future<List<Recipe>> getFavorites(String uid) async {
-  return await getRecipes(
-      Firestore.instance
-          .collection('users')
-          .document(uid)
-          .collection('favorites')
-  ).catchError((error) {
-    print('Error: $error');
-  });
-}Future<List<IngredientItem>> getScheduleRecipeIngredients(String uid, String rid) async{
-  return await getIngredientsList(
-      Firestore.instance
-          .collection('users')
-          .document(uid)
-          .collection('schedule')
-          .document(rid)
-          .collection('extendedIngredients')
-  ).catchError((error) {
-    print('Error: $error');
-  });
-}
-Future<List<IngredientItem>> getFavoriteRecipeIngredients(String uid, String rid) async{
-  return await getIngredientsList(
-      Firestore.instance
-          .collection('users')
-          .document(uid)
-          .collection('favorites')
-          .document(rid)
-          .collection('extendedIngredients')
-  ).catchError((error) {
-    print('Error: $error');
-  });
-}
-Future<List<Recipe>> getRecipes(CollectionReference ref) async{
+Future<List<Recipe>> getRecipes(CollectionReference ref) async {
   List<Recipe> _ret = new List<Recipe>();
-  await ref
-      .getDocuments()
-      .then((qs) => () async {
-    for (var doc in qs.documents){
-      Recipe _rec = new Recipe.fromMap(doc.data);
-      _rec.extendedIngredients = await getIngredientsList(ref.document(doc.documentID).collection('extendedIngredients'));
+  QuerySnapshot qs = await ref
+      .getDocuments();
+  for (var doc in qs.documents) {
+    Recipe _rec = new Recipe.fromMap(doc.data);
+    await ref
+        .document(doc.documentID)
+        .collection("extendedIngredients")
+        .getDocuments()
+        .then((qr) {
+      for (var docs in qr.documents) {
+        _rec.extendedIngredients.add(new IngredientItem.fromMap(docs.data));
+      }
       _ret.add(_rec);
-    }
+    });
     return _ret;
-  }).catchError((error) {
-    print('Error: $error');
-  });
-  return new List<Recipe>();
+  }
 }
 Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   List<SubscriptionRecord> _ret = new List<SubscriptionRecord>();

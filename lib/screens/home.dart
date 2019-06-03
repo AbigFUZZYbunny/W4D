@@ -6,6 +6,7 @@ import 'package:whats4dinner/models/state.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/screens/login.dart';
 import 'package:whats4dinner/screens/loading.dart';
+import 'package:whats4dinner/widget/bottom_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,9 +28,10 @@ class HomeScreenState extends State<HomeScreen> {
         //This is where the home screen is actually built
         body: RecipeCard(
           isFavorite: inFavorites(),
-          recipe: nextMeal,
+          meal: nextMeal,
           handleFavorite: _favoritesChanged,
         ),
+        bottomNavigationBar: BottomMenuBar(selectedIndex: 0,),
       );
     }
   }
@@ -40,27 +42,40 @@ class HomeScreenState extends State<HomeScreen> {
     await updateFavoriteMeal(StateWidget.of(context).state.user.uid, nextMeal);
     setState(() {
       if(!inFavorites()){
-        StateWidget.of(context).state.userInfo.favorites.add(nextMeal);
+        StateWidget.of(context).state.favorites.add(nextMeal);
       }else{
-        StateWidget.of(context).state.userInfo.favorites.removeWhere((rec) => rec.id == nextMeal.id);
+        StateWidget.of(context).state.favorites.removeWhere((rec) => rec.id == nextMeal.id);
       }
     });
   }
 
   bool inFavorites (){
-    for (var r in StateWidget.of(context).state.userInfo.favorites) {
-      if (r.id == nextMeal.id)
-        return true;
+    if(StateWidget.of(context).state.favorites != null) {
+      for (var r in StateWidget
+          .of(context)
+          .state
+          .favorites) {
+        if (r.id == nextMeal.id)
+          return true;
+      }
     }
     return false;
+  }
+
+  Recipe getNextMeal(){
+    for(var r in StateWidget.of(context).state.schedule){
+      if(r.recipeType == "meal"){
+        return r;
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     // Build the content depending on the state:
     appState = StateWidget.of(context).state;
-    if(!StateWidget.of(context).state.isLoading)
-      nextMeal = StateWidget.of(context).state.userInfo.schedule.firstWhere((r) => r.recipeType == "Meal");
+    if(!StateWidget.of(context).state.isLoading && StateWidget.of(context).state.schedule != null)
+      nextMeal = getNextMeal();
     return _buildContent();
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:whats4dinner/utils/double_convert.dart';
 
 class IngredientItem {
   int id;
@@ -6,7 +7,7 @@ class IngredientItem {
   String image;
   String name;
   String originalName;
-  int amount;
+  double amount;
   String unit;
   Measures measures;
   List<GroceryItem> groceryItems;
@@ -35,7 +36,7 @@ class IngredientItem {
     image: json["image"] == null ? null : json["image"],
     name: json["name"] == null ? null : json["name"],
     originalName: json["originalName"] == null ? null : json["originalName"],
-    amount: json["amount"] == null ? null : json["amount"],
+    amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unit: json["unit"] == null ? null : json["unit"],
     measures: json["measures"] == null ? null : Measures.fromMap(json["measures"]),
     groceryItems: json["grocery_items"] == null ? null : new List<GroceryItem>.from(json["grocery_items"].map((x) => GroceryItem.fromMap(x))),
@@ -110,7 +111,7 @@ class GroceryItem {
 
 class Store {
   String storeName;
-  String storePrice;
+  double storePrice;
   String productUrl;
   String currencyCode;
   String currencySymbol;
@@ -129,7 +130,7 @@ class Store {
 
   factory Store.fromMap(Map json) => new Store(
     storeName: json["store_name"] == null ? null : json["store_name"],
-    storePrice: json["store_price"] == null ? null : json["store_price"],
+    storePrice: json["store_price"] == null ? null : dynamicToDouble(json["store_price"]),
     productUrl: json["product_url"] == null ? null : json["product_url"],
     currencyCode: json["currency_code"] == null ? null : json["currency_code"],
     currencySymbol: json["currency_symbol"] == null ? null : json["currency_symbol"],
@@ -169,7 +170,7 @@ class Measures {
 }
 
 class Amount {
-  int amount;
+  double amount;
   String unitShort;
   String unitLong;
 
@@ -184,7 +185,7 @@ class Amount {
   String toJson() => json.encode(toMap());
 
   factory Amount.fromMap(Map json) => new Amount(
-    amount: json["amount"] == null ? null : json["amount"],
+    amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unitShort: json["unitShort"] == null ? null : json["unitShort"],
     unitLong: json["unitLong"] == null ? null : json["unitLong"],
   );

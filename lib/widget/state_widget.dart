@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:whats4dinner/models/state.dart';
-import 'package:whats4dinner/models/user_info.dart';
 import 'package:whats4dinner/utils/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whats4dinner/utils/store.dart';
-import 'package:whats4dinner/utils/spoonacular.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
+import 'package:whats4dinner/models/preferences.dart';
+import 'package:whats4dinner/models/ingredient_item.dart';
+import 'package:whats4dinner/models/subscription_record.dart';
+import 'package:whats4dinner/utils/spoonacular.dart';
 
 class StateWidget extends StatefulWidget {
   final StateModel state;
@@ -62,31 +64,6 @@ class _StateWidgetState extends State<StateWidget> {
     }
   }
 
-  Future<User> getUser(_uid) async {
-    DocumentSnapshot querySnapshot = await Firestore.instance
-        .collection('users')
-        .document(_uid)
-        .get();
-    if (querySnapshot.exists) {
-      setState(() {
-        state.loadingStatus = "Getting W4D User Information";
-      });
-      return User(
-        schedule: await getSchedule(_uid),
-        favorites: await getFavorites(_uid),
-        subscription: await getSubscription(_uid),
-        pantry: await getStockIngredients(_uid),
-        shopping: await getShoppingList(_uid),
-        preferences: await getPreferences(_uid),
-      );
-    }else {
-      setState(() {
-        state.loadingStatus = "Creating new User record";
-      });
-      return User.newUser();
-    }
-  }
-
   Future<Null> signInWithGoogle() async {
     setState(() {
       state.loadingStatus = "Signing in with Google";
@@ -96,17 +73,60 @@ class _StateWidgetState extends State<StateWidget> {
       googleAccount = await googleSignIn.signIn();
     }
     FirebaseUser firebaseUser = await signIntoFirebase(googleAccount);
-    User user = await getUser(firebaseUser.uid);
-    print(user);
-    if(user.schedule.length == 0) {
-      Recipe _rec = await getRandomRecipe(user.preferences);
-      user.schedule.add(_rec);
+    setState(() {
+      state.loadingStatus = "Retrieving Scheduled Recipes";
+    });
+    List<Recipe> sch = await getRecipes(
+        Firestore.instance
+            .collection('users')
+            .document(firebaseUser.uid)
+            .collection('schedule')
+    );
+    setState(() {
+      state.loadingStatus = "Retrieving Favorite Recipes";
+    });
+    List<Recipe> fav = await getRecipes(
+        Firestore.instance
+            .collection('users')
+            .document(firebaseUser.uid)
+            .collection('favorites')
+    );
+    List<SubscriptionRecord> sub = await getSubscription(firebaseUser.uid);
+    setState(() {
+      state.loadingStatus = "Retrieving Pantry Items";
+    });
+    List<IngredientItem> pant = await getIngredientsList(
+        Firestore.instance
+            .collection('users')
+            .document(firebaseUser.uid)
+            .collection('pantry')
+    );
+    setState(() {
+      state.loadingStatus = "Retrieving Grocery List";
+    });
+    List<IngredientItem> shop = await getIngredientsList(
+        Firestore.instance
+            .collection('users')
+            .document(firebaseUser.uid)
+            .collection('shopping')
+    );
+    setState(() {
+      state.loadingStatus = "Retrieving User Preferences";
+    });
+    Preferences pref = await getPreferences(firebaseUser.uid);
+    if(sch == null || sch.length == 0){
+      sch = [await getRandomRecipe(pref)];
     }
     setState(() {
+      state.schedule = sch;
+      state.favorites = fav;
+      state.preferences = pref;
+      state.shopping = shop;
+      state.pantry = pant;
+      state.subscription = sub;
       state.isLoading = false;
       state.loadingStatus = "";
       state.user = firebaseUser;
-      state.userInfo = user;
     });
   }
 

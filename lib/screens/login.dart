@@ -27,16 +27,14 @@ class LoginScreen extends StatelessWidget {
               FacebookSignInButton(
                 onPressed: () => print("Facebook Sign In pressed."),
               ),
-              Positioned(
-                bottom: 20.0,
-                child: Text(
+              SizedBox(height: Responsiveness.setHeight(context, 100.0)),
+              Text(
                   "\u00a9 2019 - Curtis Conaway Technologies",
                   style: TextStyle(
                     fontSize: Responsiveness.setHeight(context, 14.0),
                     color: Colors.white,
                     fontFamily: "Rubik",
                   ),
-                ),
               ),
             ],
           ),

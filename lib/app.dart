@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/screens/login.dart';
 import 'package:whats4dinner/screens/home.dart';
+import 'package:whats4dinner/screens/meal_details.dart';
+import 'package:whats4dinner/screens/schedule.dart';
+import 'package:whats4dinner/screens/preferences.dart';
 import 'package:whats4dinner/theme.dart';
 
 class Whats4DinnerApp extends StatelessWidget {
@@ -16,6 +19,9 @@ class Whats4DinnerApp extends StatelessWidget {
         // implementation of HomeScreen.
         '/': (context) => HomeScreen(),
         '/login': (context) => LoginScreen(),
+        '/mealdetail': (context) => MealDetailsScreen(),
+        '/schedule': (context) => ScheduleScreen(),
+        '/preferences': (context) => PreferencesScreen(),
       },
     );
   }
