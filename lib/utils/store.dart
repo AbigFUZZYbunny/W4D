@@ -5,6 +5,86 @@ import 'package:whats4dinner/models/subscription_record.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:whats4dinner/models/preferences.dart';
 
+Future<void> putSchedule(String uid, List<Recipe> rec) async{
+  CollectionReference scheduleCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('schedule');
+  for(var r in rec) {
+    await scheduleCollection.document(r.id.toString()).setData(r.toMap());
+  }
+}
+Future<void> putAllPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('schedule').setData(pref.schedule.toMap());
+  await prefCollection.document('notifications').setData(pref.notifications.toMap());
+  await prefCollection.document('favorites').setData(pref.favorites.toMap());
+  await prefCollection.document('allergies').setData(pref.allergies);
+  await prefCollection.document('diets').setData(pref.diets.toMap());
+  await prefCollection.document('cuisines').setData(pref.cuisines.toMap());
+  //await prefCollection.document('general').setData(pref.general.toMap());
+  await prefCollection.document('ingredients').setData(pref.ingredients.toMap());
+  await prefCollection.document('nutrition').setData(pref.nutrition.toMap());
+}
+Future<void> putSchedulePreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('schedule').setData(pref.schedule.toMap());
+}
+Future<void> putNotificationPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('notifications').setData(pref.notifications.toMap());
+}
+Future<void> putFavoritesPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('favorites').setData(pref.favorites.toMap());
+}
+Future<void> putAllergiesPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('allergies').setData(pref.allergies);
+}
+Future<void> putDietsPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('diets').setData(pref.diets.toMap());
+}
+Future<void> putCuisinesPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('cuisines').setData(pref.cuisines.toMap());
+}
+Future<void> putIngredientPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('ingredients').setData(pref.ingredients.toMap());
+}
+Future<void> putNutritionPreferences(String uid, Preferences pref) async{
+  CollectionReference prefCollection = Firestore.instance
+      .collection('users')
+      .document(uid)
+      .collection('preferences');
+  await prefCollection.document('nutrition').setData(pref.nutrition.toMap());
+}
 Future<List<Recipe>> getRecipes(CollectionReference ref) async {
   List<Recipe> _ret = new List<Recipe>();
   QuerySnapshot qs = await ref
@@ -21,8 +101,8 @@ Future<List<Recipe>> getRecipes(CollectionReference ref) async {
       }
       _ret.add(_rec);
     });
-    return _ret;
   }
+  return _ret;
 }
 Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   List<SubscriptionRecord> _ret = new List<SubscriptionRecord>();
@@ -75,6 +155,7 @@ Future<List<IngredientItem>> getIngredientsList(CollectionReference ref) async{
   return _ret;
 }
 Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
+  print("updateFavoriteMeal");
   CollectionReference favoritesCollection = Firestore.instance
       .collection('users')
       .document(uid)
@@ -91,10 +172,12 @@ Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
             .catchError((error) {
               print('Error: $error');
             });
-      }else{
-        await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
+        print("favorite removed from firestore");
+        return false;
       }
     }
+    await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
+    print("favorite added to firestore");
   }).catchError((error) {
     print('Error: $error');
   });
