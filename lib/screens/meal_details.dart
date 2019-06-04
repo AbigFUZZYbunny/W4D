@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
-import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/utils/responsive.dart';
 import 'package:whats4dinner/utils/string_format.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:whats4dinner/widget/list_item.dart';
 import 'package:whats4dinner/custom_icons.dart' as CustomIcons;
+import 'package:whats4dinner/widget/state_widget.dart';
+import 'package:whats4dinner/utils/store.dart';
 
 class MealDetailsScreen extends StatelessWidget {
+  final Recipe meal;
+
+  MealDetailsScreen({this.meal});
 
   @override
   Widget build(BuildContext context) {
-    Recipe meal = StateWidget.of(context).state.schedule[0];
     return Scaffold(
         body: DefaultTabController(
           length: 5,
           child: Column(
             children: <Widget> [
-              MealDetailsAppBar(200.0, meal),
+              MealDetailsAppBar(meal),
               Container(
                 height: Responsiveness.setHeight(context, 60),
                 color: Colors.white,
@@ -79,11 +82,20 @@ class MealDetailsScreen extends StatelessWidget {
   }
 }
 
-class MealDetailsAppBar extends StatelessWidget {
+class MealDetailsAppBar extends StatefulWidget {
+  final Recipe meal;
+
+  MealDetailsAppBar(this.meal);
+
+  @override
+  State<StatefulWidget> createState() => new MealDetailsAppBarState(200, meal);
+}
+
+class MealDetailsAppBarState extends State<MealDetailsAppBar> {
   final Recipe meal;
   final double height;
 
-  MealDetailsAppBar(this.height,this.meal);
+  MealDetailsAppBarState(this.height,this.meal);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +113,7 @@ class MealDetailsAppBar extends StatelessWidget {
             child: FlatButton(
               child: Text(
                 "Back",
-                style: Theme.of(context).textTheme.display1,
+                style: Theme.of(context).textTheme.display2,
               ),
               onPressed: () => Navigator.of(context).maybePop(),
             ),
@@ -110,11 +122,11 @@ class MealDetailsAppBar extends StatelessWidget {
             child:
             RawMaterialButton(
               constraints: BoxConstraints(minWidth: 50, minHeight: 50),
-              onPressed: () => null,//onFavoriteButtonPressed(),
+              onPressed: () => _favoritesChanged(meal),//onFavoriteButtonPressed(),
               child: Icon(
                 // Conditional expression:
                 // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-                Icons.star,//_setFavorite() == true ? Icons.star : Icons.star_border,
+                inFavorites(meal) ? Icons.favorite : Icons.favorite_border,//_setFavorite() == true ? Icons.star : Icons.star_border,
                 color: DarkGray,
                 size: 30,
               ),
@@ -144,6 +156,30 @@ class MealDetailsAppBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _favoritesChanged(Recipe r) async {
+    setState(() {
+      if(!inFavorites(r)){
+        StateWidget.of(context).state.favorites.add(r);
+      }else{
+        StateWidget.of(context).state.favorites.removeWhere((rec) => rec.id == r.id);
+      }
+    });
+    await updateFavoriteMeal(StateWidget.of(context).state.user.uid, r);
+  }
+
+  bool inFavorites (Recipe r){
+    if(StateWidget.of(context).state.favorites != null) {
+      for (var r in StateWidget
+          .of(context)
+          .state
+          .favorites) {
+        if (r.id == r.id)
+          return true;
+      }
+    }
+    return false;
   }
 }
 

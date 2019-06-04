@@ -128,29 +128,32 @@ class IngredientListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String amt = ingredient.measures.us.amount.toString() + " " + ingredient.measures.us.unitShort;
-    return MaterialButton(
-      padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
-      onPressed: this.onPressed,
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            height: Responsiveness.setHeight(context, 60),
-            width: Responsiveness.setWidth(context, 60),
-            child: Image.network(
-              "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: MaterialButton(
+        padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
+        onPressed: this.onPressed(ingredient.id),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              height: Responsiveness.setHeight(context, 60),
+              width: Responsiveness.setWidth(context, 60),
+              child: Image.network(
+                "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
 
+              ),
             ),
-          ),
-          SizedBox(width: Responsiveness.setWidth(context, 20.0)),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(capitalizeFirstLetter(ingredient.originalName), style: Theme.of(context).textTheme.title, overflow: TextOverflow.clip,),
-              SizedBox(height: Responsiveness.setHeight(context, 5.0)),
-              Text(amt, style: Theme.of(context).textTheme.subtitle),
-            ],
-          ),
-        ],
+            SizedBox(width: Responsiveness.setWidth(context, 20.0)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(capitalizeFirstLetter(ingredient.originalName), style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.fade,),
+                SizedBox(height: Responsiveness.setHeight(context, 5.0)),
+                Text(amt, style: Theme.of(context).textTheme.caption),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -165,27 +168,30 @@ class SmallEquipmentListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
-      onPressed: this.onPressed,
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            height: Responsiveness.setHeight(context, 30),
-            width: Responsiveness.setWidth(context, 30),
-            child: Image.network(
-              "https://spoonacular.com/cdn/equipment_100x100/" + equip.image,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: MaterialButton(
+        padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
+        onPressed: this.onPressed,
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              height: Responsiveness.setHeight(context, 30),
+              width: Responsiveness.setWidth(context, 30),
+              child: Image.network(
+                "https://spoonacular.com/cdn/equipment_100x100/" + equip.image,
 
+              ),
             ),
-          ),
-          SizedBox(width: Responsiveness.setWidth(context, 20.0)),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(capitalizeFirstLetter(equip.name), style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.clip,),
-            ],
-          ),
-        ],
+            SizedBox(width: Responsiveness.setWidth(context, 20.0)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(capitalizeFirstLetter(equip.name), style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.fade,),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -193,7 +199,7 @@ class SmallEquipmentListItem extends StatelessWidget {
 
 class RecipeListItem extends StatelessWidget {
   final Recipe recipe;
-  final Function(Recipe) onPressed;
+  final Function onPressed;
   final bool isFavorite;
 
   RecipeListItem(this.recipe, this.onPressed, this.isFavorite,);
@@ -223,7 +229,7 @@ class RecipeListItem extends StatelessWidget {
                   Positioned(
                     child: RawMaterialButton(
                       constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
-                      onPressed: () => null,//addRemoveFavorite(recipe, context),
+                      onPressed: () => onPressed,//addRemoveFavorite(recipe, context),
                       child: Icon(
                         isFavorite == true ? Icons.favorite : Icons.favorite_border,
                       ),
@@ -276,25 +282,28 @@ class SmallIngredientListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String txt = capitalizeFirstLetter(ingredient.name);
-    return Padding(
-      padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            height: Responsiveness.setHeight(context, 30),
-            width: Responsiveness.setWidth(context, 30),
-            child: Image.network(
-              "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: EdgeInsets.only(left: 10, top: 5, bottom: 10),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              height: Responsiveness.setHeight(context, 30),
+              width: Responsiveness.setWidth(context, 30),
+              child: Image.network(
+                "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+              ),
             ),
-          ),
-          SizedBox(width: Responsiveness.setWidth(context, 20.0)),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(txt, style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.clip,),
-            ],
-          ),
-        ],
+            SizedBox(width: Responsiveness.setWidth(context, 20.0)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(txt, style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.clip,),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

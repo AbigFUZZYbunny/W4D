@@ -160,9 +160,19 @@ Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
       .collection('users')
       .document(uid)
       .collection('favorites');
-  await favoritesCollection.getDocuments().then((qs) => () async {
-    for(var doc in qs.documents){
-      if(doc.documentID == recipe.id.toString()){
+  QuerySnapshot qs = await favoritesCollection.getDocuments();
+  if(qs.documents.length > 0) {
+    for (var doc in qs.documents) {
+      if (doc.documentID == recipe.id.toString()) {
+        for(var i in recipe.extendedIngredients)
+          await Firestore.instance
+              .collection('users')
+              .document(uid)
+              .collection('favorites')
+              .document(recipe.id.toString())
+              .collection('extendedIngredients')
+              .document(i.id.toString())
+              .delete();
         await Firestore.instance
             .collection('users')
             .document(uid)
@@ -170,17 +180,32 @@ Future<void> updateFavoriteMeal(String uid, Recipe recipe) async {
             .document(recipe.id.toString())
             .delete()
             .catchError((error) {
-              print('Error: $error');
-            });
+          print('Error: $error');
+        });
         print("favorite removed from firestore");
         return false;
       }
     }
     await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
+    for(var i in recipe.extendedIngredients)
+      await favoritesCollection
+          .document(recipe.id.toString())
+          .collection('extendedIngredients')
+          .document(i.id.toString())
+          .setData(i.toMap());
     print("favorite added to firestore");
-  }).catchError((error) {
-    print('Error: $error');
-  });
+    return true;
+  }else {
+    await favoritesCollection.document(recipe.id.toString()).setData(recipe.toMap());
+    for(var i in recipe.extendedIngredients)
+      await favoritesCollection
+          .document(recipe.id.toString())
+          .collection('extendedIngredients')
+          .document(i.id.toString())
+          .setData(i.toMap());
+    print("favorite added to firestore");
+    return true;
+  }
 }
 Future<Preferences> getPreferences(String uid) async{
   CollectionReference preferenceCollection = Firestore.instance

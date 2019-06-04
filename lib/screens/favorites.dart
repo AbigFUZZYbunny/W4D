@@ -6,12 +6,12 @@ import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/widget/list_item.dart';
 import 'package:whats4dinner/utils/store.dart';
 
-class ScheduleScreen extends StatefulWidget {
+class FavoriteScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new ScheduleScreenState();
+  State<StatefulWidget> createState() => new FavoriteScreenState();
 }
 
-class ScheduleScreenState extends State<ScheduleScreen> {
+class FavoriteScreenState extends State<FavoriteScreen> {
   final int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         appBar: AppBar(
           backgroundColor: MainColor,
           title: Text(
-            "Schedule",
+            "Favorites",
             style: Theme.of(context).textTheme.display3,
           ),
           centerTitle: true,
@@ -66,7 +66,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: meals.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(meals[int], _favoritesChanged, inFavorites(meals[int]));
+            return RecipeListItem(meals[int], _favoritesChanged, true,);
           },
         ),
       );
@@ -74,7 +74,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
       _ret.children.add(
         Center(
           child: Text(
-            "No scheduled meals found",
+            "No favorite meals found",
             style: Theme.of(context).textTheme.subtitle,
           ),
         ),
@@ -85,7 +85,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: sides.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(sides[int], _favoritesChanged, inFavorites(sides[int]));
+            return RecipeListItem(sides[int], _favoritesChanged, true,);
           },
         ),
       );
@@ -93,7 +93,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
       _ret.children.add(
         Center(
           child: Text(
-            "No scheduled sides found",
+            "No favorite sides found",
             style: Theme.of(context).textTheme.subtitle,
           ),
         ),
@@ -104,7 +104,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: desserts.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(desserts[int], _favoritesChanged, inFavorites(desserts[int]));
+            return RecipeListItem(desserts[int], _favoritesChanged, true,);
           },
         ),
       );
@@ -112,7 +112,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
       _ret.children.add(
         Center(
           child: Text(
-            "No scheduled desserts found",
+            "No favorite desserts found",
             style: Theme.of(context).textTheme.subtitle,
           ),
         ),
@@ -122,7 +122,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
   List<Recipe> mealList(BuildContext context){
     List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
+    for(var r in StateWidget.of(context).state.favorites){
       if(r.recipeType == "meal"){
         _ret.add(r);
       }
@@ -131,7 +131,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
   List<Recipe> sideList(BuildContext context){
     List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
+    for(var r in StateWidget.of(context).state.favorites){
       if(r.recipeType == "side"){
         _ret.add(r);
       }
@@ -140,7 +140,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
   List<Recipe> dessertList(BuildContext context){
     List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
+    for(var r in StateWidget.of(context).state.favorites){
       if(r.recipeType == "dessert"){
         _ret.add(r);
       }
@@ -149,25 +149,8 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   }
   void _favoritesChanged(Recipe r) async {
     setState(() {
-      if(!inFavorites(r)){
-        StateWidget.of(context).state.favorites.add(r);
-      }else{
-        StateWidget.of(context).state.favorites.removeWhere((rec) => rec.id == r.id);
-      }
+      StateWidget.of(context).state.favorites.removeWhere((rec) => rec.id == r.id);
     });
     await updateFavoriteMeal(StateWidget.of(context).state.user.uid, r);
-  }
-
-  bool inFavorites (Recipe r){
-    if(StateWidget.of(context).state.favorites != null) {
-      for (var r in StateWidget
-          .of(context)
-          .state
-          .favorites) {
-        if (r.id == r.id)
-          return true;
-      }
-    }
-    return false;
   }
 }

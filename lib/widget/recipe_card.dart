@@ -50,7 +50,7 @@ class RecipeCard extends StatelessWidget {
                       child: Icon(
                         // Conditional expression:
                         // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
-                        isFavorite == true ? Icons.star : Icons.star_border,
+                        isFavorite == true ? Icons.favorite : Icons.favorite_border,
                         color: DarkGray,
                         size: 30,
                       ),
@@ -100,7 +100,7 @@ class RecipeCard extends StatelessWidget {
                   child:
                   MaterialButton(
                     height: Responsiveness.setHeight(context, 60),
-                    onPressed: () => print("Start Meal Pressed"),
+                    onPressed: () => print("Start Meal Pressed"), //This function will need to load the SousChef screen if the user is subscriber, otherwise load meal details with focus on steps tab
                     color: Colors.white,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,

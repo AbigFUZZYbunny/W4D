@@ -21,6 +21,7 @@ Future<Recipe> getRandomRecipe(Preferences _pref) async{
     return Recipe.fromJson(mealResponse.body);
   }else {
     print(mealResponse.statusCode.toString());
+    return null;
   }
 }
 

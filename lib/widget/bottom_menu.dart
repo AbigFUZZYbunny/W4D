@@ -33,7 +33,7 @@ class BottomMenuBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.star,
+              Icons.favorite,
               color: DarkGray,
             ),
             title: Text(
