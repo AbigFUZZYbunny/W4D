@@ -121,14 +121,19 @@ Future<List<SubscriptionRecord>> getSubscription(String uid) async{
   return _ret;
 }
 Future<List<IngredientItem>> getStockIngredients(String uid) async{
-  return await getIngredientsList(
-      Firestore.instance
+  print("getStockIngredients");
+  CollectionReference ref =  Firestore.instance
           .collection('users')
           .document(uid)
-          .collection('pantry')
-  ).catchError((error) {
-    print('Error: $error');
-  });
+          .collection('pantry');
+  List<IngredientItem> _ret = new List<IngredientItem>();
+  QuerySnapshot qs = await ref
+      .getDocuments();
+  for (var doc in qs.documents){
+    _ret.add(new IngredientItem.fromMap(doc.data));
+  }
+  print(_ret[0].toString());
+  return _ret;
 }
 Future<List<IngredientItem>> getShoppingList(String uid) async{
   return await getIngredientsList(

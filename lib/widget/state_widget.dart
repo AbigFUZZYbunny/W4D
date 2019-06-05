@@ -103,12 +103,7 @@ class _StateWidgetState extends State<StateWidget> {
     setState(() {
       state.loadingStatus = "Retrieving Pantry Items";
     });
-    List<IngredientItem> pant = await getIngredientsList(
-        Firestore.instance
-            .collection('users')
-            .document(firebaseUser.uid)
-            .collection('pantry')
-    );
+    List<IngredientItem> pant = await getStockIngredients(firebaseUser.uid);
     setState(() {
       state.loadingStatus = "Retrieving Grocery List";
     });
@@ -118,6 +113,7 @@ class _StateWidgetState extends State<StateWidget> {
             .document(firebaseUser.uid)
             .collection('shopping')
     );
+    print(pant[0].toJson());
     setState(() {
       state.loadingStatus = "Retrieving User Preferences";
     });

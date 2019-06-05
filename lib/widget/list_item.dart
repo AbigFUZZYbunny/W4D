@@ -147,7 +147,7 @@ class IngredientListItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(capitalizeFirstLetter(ingredient.originalName), style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.fade,),
+                Text(capitalizeFirstLetter(ingredient.originalName != null ? ingredient.originalName : ingredient.name), style: Theme.of(context).textTheme.subtitle, overflow: TextOverflow.fade,),
                 SizedBox(height: Responsiveness.setHeight(context, 5.0)),
                 Text(amt, style: Theme.of(context).textTheme.caption),
               ],

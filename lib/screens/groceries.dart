@@ -167,13 +167,10 @@ class GroceriesScreenState extends State<GroceriesScreen> {
       for (var i in r.extendedIngredients) {
         IngredientItem _ing;
         if(_ret != null && _ret.length > 0) {
-          Iterable<IngredientItem> _ings = _ret.where((_i) => _i.id == i.id);
-          if(_ings != null && _ings.length > 0) {
-            _ing = _ings.first;
-          }
+          _ing = _ret.firstWhere((_i) => _i.id == i.id);
         }
         if (_ing != null) {
-          _ing.amount += i.amount;
+          _ing.measures.us.amount += i.measures.us.amount;
           _ret.removeWhere((_i) => _i.id == i.id);
         } else {
           _ing = i;
@@ -182,14 +179,15 @@ class GroceriesScreenState extends State<GroceriesScreen> {
             .of(context)
             .state
             .pantry) {
-          if (_i.amount != null) {
-            _ing.amount -= _i.amount;
-            if (_ing.amount < 0) {
-              _ing.amount = 0;
+          if (_i.measures.us.amount != null) {
+            _ing.measures.us.amount -= _i.measures.us.amount;
+            if(_ing.measures.us.amount <= 0){
+              _ing = null;
             }
           }
         }
-        _ret.add(_ing);
+        if(_ing != null)
+          _ret.add(_ing);
       }
     }
     return _ret;
