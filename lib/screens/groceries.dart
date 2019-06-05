@@ -165,28 +165,36 @@ class GroceriesScreenState extends State<GroceriesScreen> {
         .state
         .schedule) {
       for (var i in r.extendedIngredients) {
+        print("Start");
         IngredientItem _ing;
         if(_ret != null && _ret.length > 0) {
-          _ing = _ret.firstWhere((_i) => _i.id == i.id);
+          print(0);
+          //_ing = _ret.firstWhere((_i) => _i.id == i.id);
         }
         if (_ing != null) {
+          print(1);
           _ing.measures.us.amount += i.measures.us.amount;
           _ret.removeWhere((_i) => _i.id == i.id);
         } else {
+          print(2);
           _ing = i;
         }
         for (var _i in StateWidget
             .of(context)
             .state
             .pantry) {
-          if (_i.measures.us.amount != null) {
+          print(3);
+          if (_i.measures.us.amount != null && _i.id == _ing.id) {
+            print(4);
             _ing.measures.us.amount -= _i.measures.us.amount;
             if(_ing.measures.us.amount <= 0){
+              print(5);
               _ing = null;
             }
           }
         }
         if(_ing != null)
+          print("end");
           _ret.add(_ing);
       }
     }
