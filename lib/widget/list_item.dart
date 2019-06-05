@@ -132,7 +132,7 @@ class IngredientListItem extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: MaterialButton(
         padding: EdgeInsets.all(Responsiveness.setWidth(context, 10.0)),
-        onPressed: this.onPressed(ingredient.id),
+        onPressed: this.onPressed(),
         child: Row(
           children: <Widget>[
             SizedBox(

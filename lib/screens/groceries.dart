@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/widget/bottom_menu.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
-import 'package:whats4dinner/models/recipe_item.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/widget/list_item.dart';
-import 'package:whats4dinner/utils/store.dart';
 
 class GroceriesScreen extends StatefulWidget {
   @override
@@ -13,7 +11,7 @@ class GroceriesScreen extends StatefulWidget {
 }
 
 class GroceriesScreenState extends State<GroceriesScreen> {
-  final int _selectedIndex = 1;
+  final int _selectedIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +68,13 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     List<IngredientItem> shopping = shoppingList(context);
     if (required.length > 0) {
       _ret.children.add(
-        ListView.builder(
+        ListView.separated(
+          separatorBuilder: (context, index) => Divider(
+            color: LightGray,
+          ),
           itemCount: required.length,
           itemBuilder: (context, int) {
-            return IngredientListItem(required[int], _favoritesChanged, true,);
+            return IngredientListItem(required[int], (){}, true,);
           },
         ),
       );
@@ -95,7 +96,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
         ListView.builder(
           itemCount: shopping.length,
           itemBuilder: (context, int) {
-            return IngredientListItem(shopping[int], _favoritesChanged, true,);
+            return IngredientListItem(shopping[int], (){}, true,);
           },
         ),
       );
@@ -103,7 +104,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
       _ret.children.add(
         Center(
           child: Text(
-            "No pantry items found",
+            "No groceries added yet",
             style: Theme
                 .of(context)
                 .textTheme
@@ -117,7 +118,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
         ListView.builder(
           itemCount: pantry.length,
           itemBuilder: (context, int) {
-            return IngredientListItem(pantry[int], _favoritesChanged, true,);
+            return IngredientListItem(pantry[int], (){}, true,);
           },
         ),
       );
@@ -164,7 +165,13 @@ class GroceriesScreenState extends State<GroceriesScreen> {
         .state
         .schedule) {
       for (var i in r.extendedIngredients) {
-        IngredientItem _ing = _ret.firstWhere((_i) => _i.id == i.id);
+        IngredientItem _ing;
+        if(_ret != null && _ret.length > 0) {
+          Iterable<IngredientItem> _ings = _ret.where((_i) => _i.id == i.id);
+          if(_ings != null && _ings.length > 0) {
+            _ing = _ings.first;
+          }
+        }
         if (_ing != null) {
           _ing.amount += i.amount;
           _ret.removeWhere((_i) => _i.id == i.id);
@@ -187,7 +194,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     return _ret;
   }
-  Future<bool> _favoritesChanged(IngredientItem r) async {
+  Future<void> _favoritesChanged(IngredientItem r) async {
     for(var _i in StateWidget.of(context).state.preferences.ingredients.favorites) {
       if (_i == r.name) {
         setState(() {

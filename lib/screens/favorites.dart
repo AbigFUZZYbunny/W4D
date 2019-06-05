@@ -12,7 +12,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class FavoriteScreenState extends State<FavoriteScreen> {
-  final int _selectedIndex = 1;
+  final int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
