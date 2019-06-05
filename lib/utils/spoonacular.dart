@@ -3,6 +3,7 @@ import 'package:whats4dinner/models/recipe_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:math';
+import 'dart:convert';
 
 String url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes';
 
@@ -24,7 +25,6 @@ Future<Recipe> getRandomRecipe(Preferences _pref) async{
     return null;
   }
 }
-
 Future<Recipe> getRandomSide(Preferences _pref) async{
   int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
@@ -38,7 +38,6 @@ Future<Recipe> getRandomSide(Preferences _pref) async{
   });
   return Recipe.fromSpoonacular(mealResponse.body);
 }
-
 Future<Recipe> getRandomDessert(Preferences _pref) async{
   int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
@@ -52,7 +51,26 @@ Future<Recipe> getRandomDessert(Preferences _pref) async{
   });
   return Recipe.fromSpoonacular(mealResponse.body);
 }
-
+Future<Map<int, String>> convertUnits(ingName, origUnit, newUnit, amount) async {
+  final response = await http.get(
+    '$url/convert?ingredientName=$ingName&targetUnit=$newUnit&sourceUnit=$origUnit&sourceAmount=$amount',
+    headers: {
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
+    },
+  ).catchError((error) {
+    print('Error: $error');
+  });
+  if(response.statusCode == 200) {
+    Map<int,String> _ret = new Map<int,String>();
+    Map js = json.decode(response.body);
+    _ret.putIfAbsent(js["targetAmount"], () => js["targetUnit"]);
+    return _ret;
+  }else {
+    print(response.statusCode.toString());
+    return null;
+  }
+}
 String buildParameters(Preferences _pref){
   String _ret = "";
   String cuisines = "";

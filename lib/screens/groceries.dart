@@ -93,11 +93,27 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     if (shopping.length > 0) {
       _ret.children.add(
-        ListView.builder(
-          itemCount: shopping.length,
-          itemBuilder: (context, int) {
-            return IngredientListItem(shopping[int], (){}, true,);
-          },
+        Column(
+          children: <Widget> [
+            ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                color: LightGray,
+              ),
+              itemCount: shopping.length,
+              itemBuilder: (context, int) {
+                return IngredientListItem(shopping[int], (){}, true,);
+              },
+            ),
+            Expanded(
+              child: RaisedButton(
+                child: Text(
+                  "Barcode Scanner",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                onPressed: (){},
+              ),
+            ),
+          ],
         ),
       );
     } else {
@@ -115,18 +131,34 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     if (pantry.length > 0) {
       _ret.children.add(
-        ListView.builder(
-          itemCount: pantry.length,
-          itemBuilder: (context, int) {
-            return IngredientListItem(pantry[int], (){}, true,);
-          },
+        Column(
+          children: <Widget> [
+            ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                color: LightGray,
+              ),
+              itemCount: pantry.length,
+              itemBuilder: (context, int) {
+                return IngredientListItem(pantry[int], (){}, true,);
+              },
+            ),
+            Expanded(
+              child: RaisedButton(
+                child: Text(
+                  "Barcode Scanner",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                onPressed: (){},
+              ),
+            ),
+          ],
         ),
       );
     } else {
       _ret.children.add(
         Center(
           child: Text(
-            "No pantry items found",
+            "No pantry groceries found",
             style: Theme
                 .of(context)
                 .textTheme
@@ -165,37 +197,30 @@ class GroceriesScreenState extends State<GroceriesScreen> {
         .state
         .schedule) {
       for (var i in r.extendedIngredients) {
-        print("Start");
-        IngredientItem _ing;
-        if(_ret != null && _ret.length > 0) {
-          print(0);
-          //_ing = _ret.firstWhere((_i) => _i.id == i.id);
-        }
-        if (_ing != null) {
-          print(1);
-          _ing.measures.us.amount += i.measures.us.amount;
-          _ret.removeWhere((_i) => _i.id == i.id);
-        } else {
-          print(2);
-          _ing = i;
-        }
-        for (var _i in StateWidget
-            .of(context)
-            .state
-            .pantry) {
-          print(3);
-          if (_i.measures.us.amount != null && _i.id == _ing.id) {
-            print(4);
-            _ing.measures.us.amount -= _i.measures.us.amount;
-            if(_ing.measures.us.amount <= 0){
-              print(5);
-              _ing = null;
+        IngredientItem temp = i;
+        if (_ret.length > 0) {
+          for (var _i in _ret) {
+            if (_i.id == i.id) {
+              temp.measures.us.amount += _i.measures.us.amount;
+              temp.measures.metric.amount += _i.measures.metric.amount;
+              _ret.remove(_i);
+            }
+          }
+          for (var _i in StateWidget
+              .of(context)
+              .state
+              .pantry) {
+            if (temp.id == _i.id && temp.measures.us.unitShort == _i.measures.us.unitShort) {
+              temp.measures.us.amount -= _i.measures.us.amount;
+              if (temp.measures.us.amount == 0)
+                temp = null;
+            }else if(temp.id == _i.id){
+              //this is where I will change the visuals of the list item so as to notify the end user to verify the ingredient qty
             }
           }
         }
-        if(_ing != null)
-          print("end");
-          _ret.add(_ing);
+        if (temp != null)
+          _ret.add(temp);
       }
     }
     return _ret;

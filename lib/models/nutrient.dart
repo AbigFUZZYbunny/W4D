@@ -46,7 +46,7 @@ class Nutrient {
     amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unit: json["unit"] == null ? null : json["unit"],
     percentOfDailyNeeds: json["percentOfDailyNeeds"] == null ? null : dynamicToDouble(json["percentOfDailyNeeds"]),
-    icon: getIcon(json["title"] == null ? null : json["title"]),
+    icon: json["title"] == null ? null : getIcon(json["title"]),
   );
 
   Map<String, dynamic> toMap() => {
@@ -69,55 +69,82 @@ IconData getIcon(String title){
       break;
     case "Caffeine":
       return CustomIcons.CustomIcons.caffiene;
+      break;
     case "Calcium":
       return CustomIcons.CustomIcons.calcium;
+      break;
     case "Calories":
       return CustomIcons.CustomIcons.calories;
+      break;
     case "Carbohydrates":
       return CustomIcons.CustomIcons.carbohydrates;
+      break;
     case "Copper":
       return CustomIcons.CustomIcons.copper;
+      break;
     case "Fiber":
       return CustomIcons.CustomIcons.fiber;
+      break;
     case "Folate":
       return CustomIcons.CustomIcons.folate;
+      break;
     case "Iron":
       return CustomIcons.CustomIcons.iron;
+      break;
     case "Magnesium":
       return CustomIcons.CustomIcons.magnesium;
+      break;
     case "Manganese":
       return CustomIcons.CustomIcons.manganese;
+      break;
     case "Phosphorous":
       return CustomIcons.CustomIcons.phosphorous;
+      break;
     case "Potassium":
       return CustomIcons.CustomIcons.potassium;
+      break;
     case "Protein":
       return CustomIcons.CustomIcons.protein;
+      break;
     case "Selenium":
       return CustomIcons.CustomIcons.selenium;
+      break;
     case "Sodium":
       return CustomIcons.CustomIcons.sodium;
+      break;
     case "Sugar":
       return CustomIcons.CustomIcons.sugar;
+      break;
     case "Cholestorol":
       return CustomIcons.CustomIcons.total_cholestorol;
+      break;
     case "Vitamin B1":
       return CustomIcons.CustomIcons.vitamin_b1;
+      break;
     case "Vitamin B2":
       return CustomIcons.CustomIcons.vitamin_b2;
+      break;
     case "Vitamin B3":
       return CustomIcons.CustomIcons.vitamin_b3;
+      break;
     case "Vitamin B5":
       return CustomIcons.CustomIcons.vitamin_b5;
+      break;
     case "Vitamin B6":
       return CustomIcons.CustomIcons.vitamin_b6;
+      break;
     case "Vitamin B12":
       return CustomIcons.CustomIcons.vitamin_b12;
+      break;
     case "Vitamin E":
       return CustomIcons.CustomIcons.vitamin_e;
+      break;
     case "Vitamin C":
       return CustomIcons.CustomIcons.vitamin_c;
+      break;
     case "Zinc":
       return CustomIcons.CustomIcons.zinc;
+      break;
   }
+  return null;
 }
