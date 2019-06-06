@@ -3,7 +3,8 @@ import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/widget/bottom_menu.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
-import 'package:whats4dinner/widget/list_item.dart';
+import 'package:whats4dinner/utils/responsive.dart';
+import 'package:whats4dinner/utils/string_format.dart';
 
 class GroceriesScreen extends StatefulWidget {
   @override
@@ -70,7 +71,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
           ),
           itemCount: required.length,
           itemBuilder: (context, int) {
-            return IngredientListItem(required[int], (){}, true,);
+            return RequiredListItem(required[int], true,);
           },
         ),
       );
@@ -95,7 +96,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
               ),
               itemCount: shopping.length,
               itemBuilder: (context, int) {
-                return IngredientListItem(shopping[int], (){}, true,);
+                return GroceryListItem(shopping[int], true,);
               },
             ),
       );
@@ -120,7 +121,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
               ),
               itemCount: pantry.length,
               itemBuilder: (context, int) {
-                return IngredientListItem(pantry[int], (){}, true,);
+                return PantryListItem(pantry[int], true,);
               },
             ),
       );
@@ -217,5 +218,189 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     });
     //await updateFavoriteMeal(StateWidget.of(context).state.user.uid, r);
     return true;
+  }
+}
+class RequiredListItem extends StatelessWidget {
+  final IngredientItem ingredient;
+  final bool isFavorite;
+
+  RequiredListItem(this.ingredient, this.isFavorite,);
+
+  @override
+  Widget build(BuildContext context) {
+    String amt = ingredient.measures.us.amount.toString() + " " + ingredient.measures.us.unitShort;
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: GestureDetector(
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            //Move the ingredient item to the shopping list
+          }
+        },
+        onLongPress: (){}, //this will open the long press menu
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: Responsiveness.setHeight(context, 60),
+                width: Responsiveness.setWidth(context, 60),
+                child: Image.network(
+                  "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    capitalizeFirstLetter(ingredient.originalName != null ? ingredient.originalName : ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  SizedBox(
+                    height: Responsiveness.setHeight(context, 5.0),
+                  ),
+                  Text(
+                    capitalizeFirstLetter(ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ],
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Text(
+                amt,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class GroceryListItem extends StatelessWidget {
+  final IngredientItem ingredient;
+  final bool isFavorite;
+
+  GroceryListItem(this.ingredient, this.isFavorite,);
+
+  @override
+  Widget build(BuildContext context) {
+    String amt = ingredient.measures.us.amount.toString() + " " + ingredient.measures.us.unitShort;
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: GestureDetector(
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            //Move the ingredient item to the pantry
+          }else if(details.delta.dx < 0){
+            //Move the ingredient item back to the required ingredient list
+          }
+        },
+        onLongPress: (){}, //this will open the long press menu
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: Responsiveness.setHeight(context, 60),
+                width: Responsiveness.setWidth(context, 60),
+                child: Image.network(
+                  "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    capitalizeFirstLetter(ingredient.originalName != null ? ingredient.originalName : ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  SizedBox(
+                    height: Responsiveness.setHeight(context, 5.0),
+                  ),
+                  Text(
+                    capitalizeFirstLetter(ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ],
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Text(
+                amt,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class PantryListItem extends StatelessWidget {
+  final IngredientItem ingredient;
+  final bool isFavorite;
+
+  PantryListItem(this.ingredient, this.isFavorite,);
+
+  @override
+  Widget build(BuildContext context) {
+    String amt = ingredient.measures.us.amount.toString() + " " + ingredient.measures.us.unitShort;
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: GestureDetector(
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            //Move the ingredient item to the pantry
+          }else if(details.delta.dx < 0){
+            //Move the ingredient item back to the required ingredient list
+          }
+        },
+        onLongPress: (){}, //this will open the long press menu
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: Responsiveness.setHeight(context, 60),
+                width: Responsiveness.setWidth(context, 60),
+                child: Image.network(
+                  "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    capitalizeFirstLetter(ingredient.originalName != null ? ingredient.originalName : ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  SizedBox(
+                    height: Responsiveness.setHeight(context, 5.0),
+                  ),
+                  Text(
+                    capitalizeFirstLetter(ingredient.name),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ],
+              ),
+              SizedBox(width: Responsiveness.setWidth(context, 10.0)),
+              Text(
+                amt,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
