@@ -76,7 +76,7 @@ class Recipe {
     diets: json["diets"] == null ? null : new List<String>.from(json["diets"].map((x) => x)),
     analyzedInstructions: json["analyzedInstructions"] == null ? null : new List<AnalyzedInstruction>.from(json["analyzedInstructions"].map((x) => AnalyzedInstruction.fromMap(x))),
     creditsText: json["creditsText"] == null ? null : json["creditsText"],
-    recipeType: json["type"] == null ? "Meal" : json["type"],
+    recipeType: json["type"] == null ? "meal" : json["type"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -97,6 +97,7 @@ class Recipe {
     "diets": diets == null ? null : new List<dynamic>.from(diets.map((x) => x)),
     "analyzedInstructions": analyzedInstructions == null ? null : new List<dynamic>.from(analyzedInstructions.map((x) => x.toMap())),
     "creditsText": creditsText == null ? null : creditsText,
+    "recipeType" : recipeType == null ? "meal" : recipeType,
   };
 }
 
