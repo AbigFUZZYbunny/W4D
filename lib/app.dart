@@ -18,11 +18,11 @@ class Whats4DinnerApp extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/login': (context) => LoginScreen(),
-        '/mealdetail': (context) => MealDetailsScreen(),
         '/schedule': (context) => ScheduleScreen(),
         '/preferences': (context) => PreferencesScreen(),
         '/favorites': (context) => FavoriteScreen(),
         '/groceries': (context) => GroceriesScreen(),
+        '/mealdetail': (context) => MealDetailsScreen(),
       },
     );
   }

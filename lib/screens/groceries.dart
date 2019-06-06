@@ -9,10 +9,8 @@ class GroceriesScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new GroceriesScreenState();
 }
-
 class GroceriesScreenState extends State<GroceriesScreen> {
   final int _selectedIndex = 3;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +50,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
       bottomNavigationBar: BottomMenuBar(selectedIndex: _selectedIndex,),
     );
   }
-
   List<Tab> _buildTabs() {
     List<Tab> _tabs = new List<Tab>();
     _tabs.add(new Tab(text: "Required"));
@@ -60,7 +57,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     _tabs.add(new Tab(text: "Pantry"));
     return _tabs;
   }
-
   TabBarView _buildTabViews(BuildContext context) {
     TabBarView _ret = new TabBarView(children: <Widget>[],);
     List<IngredientItem> pantry = pantryList(context);
@@ -93,8 +89,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     if (shopping.length > 0) {
       _ret.children.add(
-        Column(
-          children: <Widget> [
             ListView.separated(
               separatorBuilder: (context, index) => Divider(
                 color: LightGray,
@@ -104,17 +98,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
                 return IngredientListItem(shopping[int], (){}, true,);
               },
             ),
-            Expanded(
-              child: RaisedButton(
-                child: Text(
-                  "Barcode Scanner",
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                onPressed: (){},
-              ),
-            ),
-          ],
-        ),
       );
     } else {
       _ret.children.add(
@@ -131,8 +114,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     if (pantry.length > 0) {
       _ret.children.add(
-        Column(
-          children: <Widget> [
             ListView.separated(
               separatorBuilder: (context, index) => Divider(
                 color: LightGray,
@@ -142,17 +123,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
                 return IngredientListItem(pantry[int], (){}, true,);
               },
             ),
-            Expanded(
-              child: RaisedButton(
-                child: Text(
-                  "Barcode Scanner",
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                onPressed: (){},
-              ),
-            ),
-          ],
-        ),
       );
     } else {
       _ret.children.add(
@@ -179,7 +149,6 @@ class GroceriesScreenState extends State<GroceriesScreen> {
     }
     return _ret;
   }
-
   List<IngredientItem> pantryList(BuildContext context) {
     List<IngredientItem> _ret = new List<IngredientItem>();
     for (var r in StateWidget
@@ -206,17 +175,17 @@ class GroceriesScreenState extends State<GroceriesScreen> {
               _ret.remove(_i);
             }
           }
-          for (var _i in StateWidget
-              .of(context)
-              .state
-              .pantry) {
-            if (temp.id == _i.id && temp.measures.us.unitShort == _i.measures.us.unitShort) {
-              temp.measures.us.amount -= _i.measures.us.amount;
-              if (temp.measures.us.amount == 0)
-                temp = null;
-            }else if(temp.id == _i.id){
-              //this is where I will change the visuals of the list item so as to notify the end user to verify the ingredient qty
-            }
+        }
+        for (var _i in StateWidget
+            .of(context)
+            .state
+            .pantry) {
+          if (temp.id == _i.id /*&& temp.measures.us.unitShort == _i.measures.us.unitShort*/) {
+            temp.measures.us.amount -= _i.measures.us.amount;
+            if (temp.measures.us.amount <= 0)
+              temp = null;
+          }else if(temp.id == _i.id){
+            //this is where I will change the visuals of the list item so as to notify the end user to verify the ingredient qty
           }
         }
         if (temp != null)
