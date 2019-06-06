@@ -244,8 +244,8 @@ class RequiredListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: Responsiveness.setHeight(context, 60),
-                width: Responsiveness.setWidth(context, 60),
+                height: Responsiveness.setHeight(context, 50),
+                width: Responsiveness.setWidth(context, 50),
                 child: Image.network(
                   "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
                   fit: BoxFit.cover,
@@ -306,8 +306,8 @@ class GroceryListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: Responsiveness.setHeight(context, 60),
-                width: Responsiveness.setWidth(context, 60),
+                height: Responsiveness.setHeight(context, 50),
+                width: Responsiveness.setWidth(context, 50),
                 child: Image.network(
                   "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
                   fit: BoxFit.cover,
@@ -368,8 +368,8 @@ class PantryListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: Responsiveness.setHeight(context, 60),
-                width: Responsiveness.setWidth(context, 60),
+                height: Responsiveness.setHeight(context, 50),
+                width: Responsiveness.setWidth(context, 50),
                 child: Image.network(
                   "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image,
                   fit: BoxFit.cover,
