@@ -11,6 +11,8 @@ class GroceriesScreen extends StatefulWidget {
   State<StatefulWidget> createState() => new GroceriesScreenState();
 }
 class GroceriesScreenState extends State<GroceriesScreen> {
+  //all the regular pantry items like water, salt, pepper, etc...
+  final List<int> exclusionList = [14412,1102047,2047,1082047,1012047,1002030];
   final int _selectedIndex = 3;
   @override
   Widget build(BuildContext context) {
@@ -189,7 +191,7 @@ class GroceriesScreenState extends State<GroceriesScreen> {
             //this is where I will change the visuals of the list item so as to notify the end user to verify the ingredient qty
           }
         }
-        if (temp != null)
+        if (temp != null && !exclusionList.contains(temp.id))
           _ret.add(temp);
       }
     }

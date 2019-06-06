@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'ingredient_item.dart';
 import 'nutrient.dart';
 import 'package:whats4dinner/utils/double_convert.dart';
+import 'dart:async';
 
 class Recipe {
   String recipeType;
@@ -50,12 +51,6 @@ class Recipe {
 
   factory Recipe.fromJson(String str) => Recipe.fromMap(json.decode(str));
 
-  factory Recipe.fromSpoonacular(String str) {
-    var j = json.decode(str);
-    Recipe r = new Recipe.fromMap(j);
-    return r;
-  }
-
   String toJson() => json.encode(toMap());
 
   factory Recipe.fromMap(Map json) => new Recipe(
@@ -77,6 +72,26 @@ class Recipe {
     analyzedInstructions: json["analyzedInstructions"] == null ? null : new List<AnalyzedInstruction>.from(json["analyzedInstructions"].map((x) => AnalyzedInstruction.fromMap(x))),
     creditsText: json["creditsText"] == null ? null : json["creditsText"],
     recipeType: json["type"] == null ? "meal" : json["type"],
+  );
+  factory Recipe.mealFromMap(Map json) => new Recipe(
+    weightWatcherSmartPoints: json["weightWatcherSmartPoints"] == null ? null : json["weightWatcherSmartPoints"],
+    preparationMinutes: json["preparationMinutes"] == null ? null : json["preparationMinutes"],
+    cookingMinutes: json["cookingMinutes"] == null ? null : json["cookingMinutes"],
+    sourceUrl: json["sourceUrl"] == null ? null : json["sourceUrl"],
+    creditText: json["creditText"] == null ? null : json["creditText"],
+    pricePerServing: json["pricePerServing"] == null ? null : dynamicToDouble(json["pricePerServing"]),
+    extendedIngredients: json["extendedIngredients"] == null ? new List<IngredientItem>() : new List<IngredientItem>.from(json["extendedIngredients"].map((x) => IngredientItem.fromMap(x))),
+    id: json["id"] == null ? null : json["id"],
+    title: json["title"] == null ? null : json["title"],
+    readyInMinutes: json["readyInMinutes"] == null ? null : json["readyInMinutes"],
+    servings: json["servings"] == null ? null : json["servings"],
+    image: json["image"] == null ? null : json["image"],
+    nutrition: json["nutrition"] == null ? null : Nutrition.fromMap(json["nutrition"]),
+    cuisines: json["cuisines"] == null ? null : new List<String>.from(json["cuisines"].map((x) => x)),
+    diets: json["diets"] == null ? null : new List<String>.from(json["diets"].map((x) => x)),
+    analyzedInstructions: json["analyzedInstructions"] == null ? null : new List<AnalyzedInstruction>.from(json["analyzedInstructions"].map((x) => AnalyzedInstruction.fromMap(x))),
+    creditsText: json["creditsText"] == null ? null : json["creditsText"],
+    recipeType: "meal",
   );
 
   Map<String, dynamic> toMap() => {

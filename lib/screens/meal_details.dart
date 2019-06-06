@@ -157,7 +157,6 @@ class MealDetailsAppBarState extends State<MealDetailsAppBar> {
       ),
     );
   }
-
   void _favoritesChanged(Recipe r) async {
     setState(() {
       if(!inFavorites(r)){
@@ -168,7 +167,6 @@ class MealDetailsAppBarState extends State<MealDetailsAppBar> {
     });
     await updateFavoriteMeal(StateWidget.of(context).state.user.uid, r);
   }
-
   bool inFavorites (Recipe r){
     if(StateWidget.of(context).state.favorites != null) {
       for (var r in StateWidget

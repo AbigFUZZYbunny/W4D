@@ -7,10 +7,10 @@ import 'dart:convert';
 
 String url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes';
 
-Future<Recipe> getRandomRecipe(Preferences _pref) async{
+Future<int> getResultsCount(Preferences _pref, String type) async{
   int ranking = _pref.ingredients.favoritesFilterLevel;
   final mealResponse = await http.get(
-    '$url/searchComplex?limitLicense=false&type=main+course&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
+    '$url/searchComplex?limitLicense=false&type=$type&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
@@ -19,16 +19,19 @@ Future<Recipe> getRandomRecipe(Preferences _pref) async{
     print('Error: $error');
   });
   if(mealResponse.statusCode == 200) {
-    return Recipe.fromJson(mealResponse.body);
+    Map js = json.decode(mealResponse.body);
+    return js["totalResults"];
   }else {
-    print(mealResponse.statusCode.toString());
-    return null;
+    print("Error: " + mealResponse.statusCode.toString());
+    return 0;
   }
 }
-Future<Recipe> getRandomSide(Preferences _pref) async{
+Future<Recipe> getRandomRecipe(Preferences _pref) async{
   int ranking = _pref.ingredients.favoritesFilterLevel;
+  int res = await getResultsCount(_pref, "main course");
+  int offset = Random().nextInt(res);
   final mealResponse = await http.get(
-    '$url/searchComplex?limitLicense=false&type=side+item&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
+    '$url/searchComplex?limitLicense=false&offset=$offset&type=main course&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
@@ -36,7 +39,52 @@ Future<Recipe> getRandomSide(Preferences _pref) async{
   ).catchError((error) {
     print('Error: $error');
   });
-  return Recipe.fromSpoonacular(mealResponse.body);
+  if(mealResponse.statusCode == 200) {
+    Map j = json.decode(mealResponse.body);
+    return Recipe.mealFromMap(j["results"][0]);
+  }else {
+    print("Error: " + mealResponse.statusCode.toString());
+    return null;
+  }
+}
+Future<List<Recipe>> getRecipeSchedule(Preferences _pref) async{
+  List<Recipe> _ret = new List<Recipe>();
+  int ranking = _pref.ingredients.favoritesFilterLevel;
+  int number = _pref.schedule.numberOfMeals;
+  Random _rand = new Random();
+  int res = await getResultsCount(_pref, "main course");
+  for(int i = 0; i < number; i++){
+    int offset = _rand.nextInt(res);
+    final mealResponse = await http.get(
+      '$url/searchComplex?limitLicense=false&offset=$offset&type=main course&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
+      headers: {
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
+      },
+    ).catchError((error) {
+      print('Error: $error');
+    });
+    if(mealResponse.statusCode == 200) {
+      Map j = json.decode(mealResponse.body);
+      _ret.add(Recipe.mealFromMap(j["results"][0]));
+    }else {
+      print("Error: " + mealResponse.statusCode.toString());
+    }
+  }
+  return _ret;
+}
+Future<Recipe> getRandomSide(Preferences _pref) async{
+  int ranking = _pref.ingredients.favoritesFilterLevel;
+  final mealResponse = await http.get(
+    '$url/searchComplex?limitLicense=false&type=side item&fillIngredients=true&instructionsRequired=true&addRecipeInformation=true&ranking=$ranking' + buildParameters(_pref),
+    headers: {
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
+    },
+  ).catchError((error) {
+    print('Error: $error');
+  });
+  return Recipe.fromJson(mealResponse.body);
 }
 Future<Recipe> getRandomDessert(Preferences _pref) async{
   int ranking = _pref.ingredients.favoritesFilterLevel;
@@ -49,11 +97,11 @@ Future<Recipe> getRandomDessert(Preferences _pref) async{
   ).catchError((error) {
     print('Error: $error');
   });
-  return Recipe.fromSpoonacular(mealResponse.body);
+  return Recipe.fromJson(mealResponse.body);
 }
-Future<Map<int, String>> convertUnits(ingName, origUnit, newUnit, amount) async {
+Future<Map<int, String>> convertUnits(ingName, origUnit, amount) async {
   final response = await http.get(
-    '$url/convert?ingredientName=$ingName&targetUnit=$newUnit&sourceUnit=$origUnit&sourceAmount=$amount',
+    '$url/convert?ingredientName=$ingName&targetUnit=tablespoon&sourceUnit=$origUnit&sourceAmount=$amount',
     headers: {
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key": "FYiUBYqYvfmshCovVjy8PmXhteQbp1E8Ie9jsnTc7qON8jK9mM"
