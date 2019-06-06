@@ -10,12 +10,13 @@ import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/utils/store.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  final Recipe meal;
+  final Recipe bakmeal;
 
-  MealDetailsScreen({this.meal});
+  MealDetailsScreen({this.bakmeal});
 
   @override
   Widget build(BuildContext context) {
+    Recipe meal = StateWidget.of(context).state.schedule[0];
     return Scaffold(
         body: DefaultTabController(
           length: 5,
