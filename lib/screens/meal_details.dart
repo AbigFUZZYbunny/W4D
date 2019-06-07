@@ -4,10 +4,11 @@ import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/utils/responsive.dart';
 import 'package:whats4dinner/utils/string_format.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
-import 'package:whats4dinner/widget/list_item.dart';
+import 'package:whats4dinner/widget/meal_details.dart';
 import 'package:whats4dinner/custom_icons.dart' as CustomIcons;
 import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/utils/store.dart';
+import 'package:whats4dinner/functions/meal_details.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   final Recipe bakmeal;
@@ -431,7 +432,7 @@ class MealDetailsInfo extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            _getCalories().toString(),
+                            getCalories(meal).toString(),
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
@@ -459,7 +460,7 @@ class MealDetailsInfo extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            _getCarbs().toString(),
+                            getCarbs(meal).toString(),
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
@@ -487,7 +488,7 @@ class MealDetailsInfo extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            _getFat().toString(),
+                            getFat(meal).toString(),
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
@@ -522,32 +523,5 @@ class MealDetailsInfo extends StatelessWidget {
         ),
       ),
     );
-  }
-  String _getCalories() {
-    for(var n in meal.nutrition.nutrients) {
-      if(n.title == "Calories"){
-        String _ret = n.amount.toString();
-        return _ret;
-      }
-    }
-    return "Unknown";
-  }
-  String _getCarbs() {
-    for(var n in meal.nutrition.nutrients) {
-      if(n.title == "Carbohydrates") {
-        String _ret = n.amount.toString() + " " + n.unit;
-        return _ret;
-      }
-    }
-    return "Unknown";
-  }
-  String _getFat() {
-    for(var n in meal.nutrition.nutrients) {
-      if(n.title == "Fat") {
-        String _ret = n.amount.toString() + " " + n.unit;
-        return _ret;
-      }
-    }
-    return "Unknown";
   }
 }

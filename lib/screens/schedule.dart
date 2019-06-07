@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/widget/bottom_menu.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
+import 'package:whats4dinner/widget/favorites_schedule.dart';
+import 'package:whats4dinner/functions/favorites_schedule.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
-import 'package:whats4dinner/widget/list_item.dart';
 import 'package:whats4dinner/utils/store.dart';
 
 class ScheduleScreen extends StatefulWidget {
@@ -66,7 +67,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: meals.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(meals[int], _favoritesChanged, inFavorites(meals[int]));
+            return RecipeListItem(meals[int], _favoritesChanged, inFavorites(meals[int], context));
           },
         ),
       );
@@ -85,7 +86,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: sides.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(sides[int], _favoritesChanged, inFavorites(sides[int]));
+            return RecipeListItem(sides[int], _favoritesChanged, inFavorites(sides[int], context));
           },
         ),
       );
@@ -104,7 +105,7 @@ class ScheduleScreenState extends State<ScheduleScreen> {
         ListView.builder(
           itemCount: desserts.length,
           itemBuilder: (context, int) {
-            return RecipeListItem(desserts[int], _favoritesChanged, inFavorites(desserts[int]));
+            return RecipeListItem(desserts[int], _favoritesChanged, inFavorites(desserts[int], context));
           },
         ),
       );
@@ -120,54 +121,14 @@ class ScheduleScreenState extends State<ScheduleScreen> {
     }
     return _ret;
   }
-  List<Recipe> mealList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
-      if(r.recipeType == "meal"){
-        _ret.add(r);
-      }
-    }
-    return _ret;
-  }
-  List<Recipe> sideList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
-      if(r.recipeType == "side"){
-        _ret.add(r);
-      }
-    }
-    return _ret;
-  }
-  List<Recipe> dessertList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.schedule){
-      if(r.recipeType == "dessert"){
-        _ret.add(r);
-      }
-    }
-    return _ret;
-  }
   void _favoritesChanged(Recipe r) async {
     setState(() {
-      if(!inFavorites(r)){
+      if(!inFavorites(r, context)){
         StateWidget.of(context).state.favorites.add(r);
       }else{
         StateWidget.of(context).state.favorites.removeWhere((rec) => rec.id == r.id);
       }
     });
     await updateFavoriteMeal(StateWidget.of(context).state.user.uid, r);
-  }
-
-  bool inFavorites (Recipe r){
-    if(StateWidget.of(context).state.favorites != null) {
-      for (var r in StateWidget
-          .of(context)
-          .state
-          .favorites) {
-        if (r.id == r.id)
-          return true;
-      }
-    }
-    return false;
   }
 }

@@ -3,7 +3,8 @@ import 'package:whats4dinner/colors.dart';
 import 'package:whats4dinner/widget/bottom_menu.dart';
 import 'package:whats4dinner/models/recipe_item.dart';
 import 'package:whats4dinner/widget/state_widget.dart';
-import 'package:whats4dinner/widget/list_item.dart';
+import 'package:whats4dinner/widget/favorites_schedule.dart';
+import 'package:whats4dinner/functions/favorites_schedule.dart';
 import 'package:whats4dinner/utils/store.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -117,33 +118,6 @@ class FavoriteScreenState extends State<FavoriteScreen> {
           ),
         ),
       );
-    }
-    return _ret;
-  }
-  List<Recipe> mealList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.favorites){
-      if(r.recipeType == "meal"){
-        _ret.add(r);
-      }
-    }
-    return _ret;
-  }
-  List<Recipe> sideList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.favorites){
-      if(r.recipeType == "side"){
-        _ret.add(r);
-      }
-    }
-    return _ret;
-  }
-  List<Recipe> dessertList(BuildContext context){
-    List<Recipe> _ret = new List<Recipe>();
-    for(var r in StateWidget.of(context).state.favorites){
-      if(r.recipeType == "dessert"){
-        _ret.add(r);
-      }
     }
     return _ret;
   }
