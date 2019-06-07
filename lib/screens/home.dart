@@ -7,6 +7,7 @@ import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/screens/login.dart';
 import 'package:whats4dinner/screens/loading.dart';
 import 'package:whats4dinner/widget/bottom_menu.dart';
+import 'package:whats4dinner/utils/spoonacular.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -72,8 +73,9 @@ class HomeScreenState extends State<HomeScreen> {
           return r;
         }
       }
+    }else{
+
     }
-    //This is where I need to call the spoonacular api to get a new random next meal
   }
 
   @override

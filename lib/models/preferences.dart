@@ -266,6 +266,7 @@ class PrefSchedule {
   int servings;
   bool populateCalendar;
   DateTime mealTime;
+  int numberOfMeals;
 
   PrefSchedule({
     this.sideDishes,
@@ -275,6 +276,7 @@ class PrefSchedule {
     this.servings,
     this.populateCalendar,
     this.mealTime,
+    this.numberOfMeals,
   });
 
   factory PrefSchedule.newUser() => new PrefSchedule(
@@ -285,6 +287,7 @@ class PrefSchedule {
     servings: 2,
     populateCalendar: false,
     mealTime: DateTime.parse("1900-01-01 18:30:00Z"),
+    numberOfMeals: 7,
   );
 
   factory PrefSchedule.fromJson(String str) => PrefSchedule.fromMap(json.decode(str));
@@ -299,6 +302,7 @@ class PrefSchedule {
     servings: json["servings"] == null ? null : json["servings"],
     populateCalendar: json["populateCalendar"] == null ? null : json["populateCalendar"],
     mealTime: json["mealTime"] == null ? null : DateTime.parse(json["mealTime"]),
+    numberOfMeals: json["numberOfMeals"] == null ? null : json["numberOfMeals"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -309,6 +313,7 @@ class PrefSchedule {
     "servings": servings == null ? null : servings,
     "populateCalendar": populateCalendar == null ? null : populateCalendar,
     "mealTime": mealTime == null ? null : mealTime.toIso8601String(),
+    "numberOfMeals": numberOfMeals == null ? null : numberOfMeals,
   };
 }
 
