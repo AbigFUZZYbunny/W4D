@@ -10,7 +10,7 @@ class IngredientItem {
   double amount;
   String unit;
   Measures measures;
-  List<GroceryItem> groceryItems;
+  List<GroceryItem> grocery;
   List<String> tips;
 
   IngredientItem({
@@ -22,7 +22,7 @@ class IngredientItem {
     this.amount,
     this.unit,
     this.measures,
-    this.groceryItems,
+    this.grocery,
     this.tips,
   });
 
@@ -39,7 +39,7 @@ class IngredientItem {
     amount: json["amount"] == null ? null : dynamicToDouble(json["amount"]),
     unit: json["unit"] == null ? null : json["unit"],
     measures: json["measures"] == null ? null : Measures.fromMap(json["measures"]),
-    groceryItems: json["grocery_items"] == null ? null : new List<GroceryItem>.from(json["grocery_items"].map((x) => GroceryItem.fromMap(x))),
+    grocery: json["groceryItems"] == null ? new List<GroceryItem>() : new List<GroceryItem>.from(json["groceryItems"].map((x) => GroceryItem.fromMap(x))),
     tips: json["tips"] == null ? null : new List<String>.from(json["tips"].map((x) => x)),
   );
 
@@ -52,13 +52,13 @@ class IngredientItem {
     "amount": amount == null ? null : amount,
     "unit": unit == null ? null : unit,
     "measures": measures == null ? null : measures.toMap(),
-    "grocery_items": groceryItems == null ? null : new List<dynamic>.from(groceryItems.map((x) => x.toMap())),
+    "grocery_items": grocery == null ? null : new List<dynamic>.from(grocery.map((x) => x.toMap())),
     "tips": tips == null ? null : new List<dynamic>.from(tips.map((x) => x)),
   };
 }
 
 class GroceryItem {
-  String barcodeNumber;
+  int barcodeNumber;
   String productName;
   String category;
   String brand;
@@ -85,11 +85,11 @@ class GroceryItem {
   String toJson() => json.encode(toMap());
 
   factory GroceryItem.fromMap(Map json) => new GroceryItem(
-    barcodeNumber: json["barcode_number"] == null ? null : json["barcode_number"],
-    productName: json["product_name"] == null ? null : json["product_name"],
+    barcodeNumber: json["barcodeNumber"] == null ? null : json["barcodeNumber"],
+    productName: json["productName"] == null ? null : json["productName"],
     category: json["category"] == null ? null : json["category"],
     brand: json["brand"] == null ? null : json["brand"],
-    packageQuantity: json["package_quantity"] == null ? null : json["package_quantity"],
+    packageQuantity: json["packageQuantity"] == null ? null : json["packageQuantity"],
     size: json["size"] == null ? null : json["size"],
     description: json["description"] == null ? null : json["description"],
     images: json["images"] == null ? null : new List<String>.from(json["images"].map((x) => x)),
