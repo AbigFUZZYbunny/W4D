@@ -16,6 +16,7 @@ class StateModel{
   List<SubscriptionRecord> subscription;
   List<IngredientItem> pantry;
   List<IngredientItem> shopping;
+  int recipeSearchResults;
 
   StateModel({
     this.isLoading = false,
@@ -28,5 +29,6 @@ class StateModel{
     this.subscription,
     this.pantry,
     this.shopping,
+    this.recipeSearchResults,
   });
 }

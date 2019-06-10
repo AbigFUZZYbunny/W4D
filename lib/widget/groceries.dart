@@ -6,9 +6,8 @@ import 'package:whats4dinner/utils/string_format.dart';
 
 class RequiredListItem extends StatelessWidget {
   final IngredientItem ingredient;
-  final bool isFavorite;
 
-  RequiredListItem(this.ingredient, this.isFavorite,);
+  RequiredListItem(this.ingredient,);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,42 @@ class RequiredListItem extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: GestureDetector(
-        onTap: (){},
+        onTap: () => showDialog(
+          context: context,
+          builder: (BuildContext context)  {
+            return new AlertDialog(
+              title: Text(
+                capitalizeFirstLetter(ingredient.originalName),
+                textAlign: TextAlign.center,
+              ),
+              content: new Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text("Add to shopping list"),
+                        ),
+                      ),
+                    ]
+                  ),
+                  Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: RaisedButton(
+                            child: Text("Already have this ingredient"),
+                          ),
+                        ),
+                      ]
+                  ),
+
+                ],
+              ),
+            );
+          },
+        ),
         onLongPress: (){}, //this will open the long press menu
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -70,9 +104,8 @@ class RequiredListItem extends StatelessWidget {
 }
 class GroceryListItem extends StatelessWidget {
   final IngredientItem ingredient;
-  final bool isFavorite;
 
-  GroceryListItem(this.ingredient, this.isFavorite,);
+  GroceryListItem(this.ingredient,);
 
   @override
   Widget build(BuildContext context) {
@@ -134,9 +167,8 @@ class GroceryListItem extends StatelessWidget {
 }
 class PantryListItem extends StatelessWidget {
   final IngredientItem ingredient;
-  final bool isFavorite;
 
-  PantryListItem(this.ingredient, this.isFavorite,);
+  PantryListItem(this.ingredient,);
 
   @override
   Widget build(BuildContext context) {

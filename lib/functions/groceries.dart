@@ -1,6 +1,7 @@
 import 'package:whats4dinner/widget/state_widget.dart';
 import 'package:whats4dinner/models/ingredient_item.dart';
 import 'package:flutter/material.dart';
+import 'package:whats4dinner/utils/string_format.dart';
 
 //all the regular pantry items like water, salt, pepper, etc...
 final List<int> exclusionList = [14412,1102047,2047,1082047,1012047,1002030];
@@ -57,4 +58,65 @@ List<IngredientItem> requiredList(BuildContext context) {
     }
   }
   return _ret;
+}
+void moveToShopping(BuildContext context, IngredientItem ing){
+  //StateWidget.of(context).state.
+  print("moveToShopping: " + ing.toJson());
+}
+void moveToPantry(BuildContext context, IngredientItem ing){
+  //StateWidget.of(context).state.
+  print("moveToPantry: " + ing.toJson());
+}
+void changeBase(BuildContext context, IngredientItem ing){
+  //StateWidget.of(context).state.
+  print("changeBase: " + ing.toJson());
+}
+AlertDialog requiredOnTap(BuildContext context, IngredientItem ing, Function f1, Function f2, Function f3){
+  showDialog(
+    context: context,
+    builder: (BuildContext context)  {
+      return new AlertDialog(
+        title: Text(
+          capitalizeFirstLetter(ing.originalName),
+          textAlign: TextAlign.center,
+        ),
+        content: new Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      child: Text("Add to shopping list"),
+                      onPressed: (){f1(context, ing);},
+                    ),
+                  ),
+                ]
+            ),
+            Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      child: Text("I already have " + ing.name),
+                      onPressed: (){f2(context, ing);},
+                    ),
+                  ),
+                ]
+            ),
+            Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      child: Text("Change base ingredient"),
+                      onPressed: (){f3(context, ing);},
+                    ),
+                  ),
+                ]
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
